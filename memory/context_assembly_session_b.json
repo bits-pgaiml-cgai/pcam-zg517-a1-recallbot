@@ -1,0 +1,58 @@
+[
+  {
+    "part": "system+skills",
+    "memory_type": "procedural",
+    "home": "external\u2192prompt",
+    "tokens": 357
+  },
+  {
+    "part": "tools schema",
+    "memory_type": "procedural",
+    "home": "model-native",
+    "tokens": 80
+  },
+  {
+    "part": "semantic facts",
+    "memory_type": "semantic",
+    "home": "external",
+    "tokens": 38
+  },
+  {
+    "part": "episodic",
+    "memory_type": "episodic",
+    "home": "external",
+    "tokens": 24
+  },
+  {
+    "part": "history",
+    "memory_type": "short-term",
+    "home": "model-native",
+    "tokens": 159
+  },
+  {
+    "part": "retrieved kb",
+    "memory_type": "semantic-domain",
+    "home": "external",
+    "tokens": 1024
+  },
+  {
+    "part": "current user",
+    "memory_type": "short-term",
+    "home": "model-native",
+    "tokens": 15
+  },
+  {
+    "part": "reply headroom",
+    "memory_type": "n/a",
+    "home": "reserved",
+    "tokens": 256
+  },
+  {
+    "part": "TOTAL",
+    "memory_type": "-",
+    "home": "-",
+    "tokens": 1953,
+    "fits_window": true,
+    "fallback": "I do not have that information in the clinic knowledge base or your saved profile."
+  }
+]

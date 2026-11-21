@@ -1,0 +1,594 @@
+{
+  "variant": "V31",
+  "user_id": "U1",
+  "session_a_turns": [
+    1,
+    25
+  ],
+  "session_b_turns": [
+    26,
+    71
+  ],
+  "facts": [
+    {
+      "key": "city",
+      "value": "Hyderabad",
+      "turn": 3
+    },
+    {
+      "key": "preferred_location",
+      "value": "LOC-HYD",
+      "turn": 3
+    },
+    {
+      "key": "name",
+      "value": "Anita Rao",
+      "turn": 5
+    },
+    {
+      "key": "specialty",
+      "value": "general physician",
+      "turn": 5
+    },
+    {
+      "key": "budget",
+      "value": "800",
+      "turn": 13
+    },
+    {
+      "key": "budget",
+      "value": "1200",
+      "turn": 15,
+      "updates": 13
+    },
+    {
+      "key": "allergy",
+      "value": "penicillin",
+      "turn": 17
+    },
+    {
+      "key": "allergy",
+      "value": null,
+      "turn": 30,
+      "forget": true
+    },
+    {
+      "key": "time_preference",
+      "value": "morning",
+      "turn": 42
+    },
+    {
+      "key": "preferred_doctor",
+      "value": "DR-GP-17",
+      "turn": 47
+    },
+    {
+      "key": "preferred_doctor",
+      "value": "DR-GP-22",
+      "turn": 48,
+      "updates": 47
+    },
+    {
+      "key": "sms_language",
+      "value": "English",
+      "turn": 58
+    },
+    {
+      "key": "sms_language",
+      "value": "Telugu",
+      "turn": 60,
+      "updates": 58
+    }
+  ],
+  "turns": [
+    {
+      "turn": 1,
+      "role": "user",
+      "text": "Hi, I am looking to book a clinic appointment.",
+      "tags": [
+        "low_importance"
+      ]
+    },
+    {
+      "turn": 2,
+      "role": "assistant",
+      "text": "Hello! I can help you book. Which city are you in?",
+      "tags": []
+    },
+    {
+      "turn": 3,
+      "role": "user",
+      "text": "I live in Hyderabad and prefer LOC-HYD.",
+      "tags": [
+        "fact"
+      ]
+    },
+    {
+      "turn": 4,
+      "role": "assistant",
+      "text": "Noted Hyderabad / LOC-HYD. What specialty do you need?",
+      "tags": []
+    },
+    {
+      "turn": 5,
+      "role": "user",
+      "text": "General physician please. My name is Anita Rao.",
+      "tags": [
+        "fact"
+      ]
+    },
+    {
+      "turn": 6,
+      "role": "assistant",
+      "text": "Thanks Anita. Do you have a preferred day?",
+      "tags": []
+    },
+    {
+      "turn": 7,
+      "role": "user",
+      "text": "Friday afternoon works.",
+      "tags": [
+        "slot"
+      ]
+    },
+    {
+      "turn": 8,
+      "role": "assistant",
+      "text": "I can offer Friday 16:00 SLOT-GEN at LOC-HYD. Confirm to book?",
+      "tags": []
+    },
+    {
+      "turn": 9,
+      "role": "user",
+      "text": "What is the refund window for plan P-204?",
+      "tags": [
+        "kb"
+      ]
+    },
+    {
+      "turn": 10,
+      "role": "assistant",
+      "text": "Under the 2026 policy, P-204 has a 14-day refund window (RFD-14D).",
+      "tags": []
+    },
+    {
+      "turn": 11,
+      "role": "user",
+      "text": "Also, what does E-4021 mean?",
+      "tags": [
+        "kb"
+      ]
+    },
+    {
+      "turn": 12,
+      "role": "assistant",
+      "text": "E-4021 means the insurance eligibility check failed.",
+      "tags": []
+    },
+    {
+      "turn": 13,
+      "role": "user",
+      "text": "My budget for consults is 800 rupees.",
+      "tags": [
+        "fact"
+      ]
+    },
+    {
+      "turn": 14,
+      "role": "assistant",
+      "text": "Saved budget 800. Shall I book Friday 16:00?",
+      "tags": []
+    },
+    {
+      "turn": 15,
+      "role": "user",
+      "text": "Actually my budget is now 1200 rupees.",
+      "tags": [
+        "fact_update"
+      ]
+    },
+    {
+      "turn": 16,
+      "role": "assistant",
+      "text": "Updated budget to 1200.",
+      "tags": []
+    },
+    {
+      "turn": 17,
+      "role": "user",
+      "text": "I am allergic to penicillin.",
+      "tags": [
+        "fact"
+      ]
+    },
+    {
+      "turn": 18,
+      "role": "assistant",
+      "text": "Recorded penicillin allergy.",
+      "tags": []
+    },
+    {
+      "turn": 19,
+      "role": "user",
+      "text": "Thanks for your help so far.",
+      "tags": [
+        "low_importance"
+      ]
+    },
+    {
+      "turn": 20,
+      "role": "assistant",
+      "text": "You are welcome.",
+      "tags": []
+    },
+    {
+      "turn": 21,
+      "role": "user",
+      "text": "Please book the Friday 16:00 SLOT-GEN for Anita Rao at LOC-HYD.",
+      "tags": [
+        "slot",
+        "confirm"
+      ]
+    },
+    {
+      "turn": 22,
+      "role": "assistant",
+      "text": "Confirm booking: Anita Rao, GP, Friday 16:00, LOC-HYD. Reply yes to write.",
+      "tags": []
+    },
+    {
+      "turn": 23,
+      "role": "user",
+      "text": "Yes, confirm the booking.",
+      "tags": [
+        "confirm",
+        "episode"
+      ]
+    },
+    {
+      "turn": 24,
+      "role": "assistant",
+      "text": "Booked appointment APT-1001 for Friday 16:00 at LOC-HYD.",
+      "tags": []
+    },
+    {
+      "turn": 25,
+      "role": "user",
+      "text": "The waiting area was crowded last time; please note my complaint.",
+      "tags": [
+        "episode"
+      ]
+    },
+    {
+      "turn": 26,
+      "role": "user",
+      "text": "Hi, I am back. Which city did I say I am in?",
+      "tags": [
+        "probe_R"
+      ]
+    },
+    {
+      "turn": 27,
+      "role": "assistant",
+      "text": "You said Hyderabad.",
+      "tags": []
+    },
+    {
+      "turn": 28,
+      "role": "user",
+      "text": "What is my budget now?",
+      "tags": [
+        "probe_U"
+      ]
+    },
+    {
+      "turn": 29,
+      "role": "assistant",
+      "text": "Your current budget is 1200 rupees.",
+      "tags": []
+    },
+    {
+      "turn": 30,
+      "role": "user",
+      "text": "Please forget my old address if any, and forget my allergy.",
+      "tags": [
+        "forget"
+      ]
+    },
+    {
+      "turn": 31,
+      "role": "assistant",
+      "text": "I removed the allergy fact from your profile.",
+      "tags": []
+    },
+    {
+      "turn": 32,
+      "role": "user",
+      "text": "What was my allergy?",
+      "tags": [
+        "probe_F"
+      ]
+    },
+    {
+      "turn": 33,
+      "role": "assistant",
+      "text": "I do not have an allergy on file for you.",
+      "tags": []
+    },
+    {
+      "turn": 34,
+      "role": "user",
+      "text": "What did I book last time, and did I have a problem with it?",
+      "tags": [
+        "probe_E"
+      ]
+    },
+    {
+      "turn": 35,
+      "role": "assistant",
+      "text": "You booked APT-1001 Friday 16:00 at LOC-HYD and complained about crowding.",
+      "tags": []
+    },
+    {
+      "turn": 36,
+      "role": "user",
+      "text": "What is WAIT-24?",
+      "tags": [
+        "kb"
+      ]
+    },
+    {
+      "turn": 37,
+      "role": "assistant",
+      "text": "WAIT-24 means new patients should get SLOT-GEN within 24 hours.",
+      "tags": []
+    },
+    {
+      "turn": 38,
+      "role": "user",
+      "text": "And for Saturday?",
+      "tags": [
+        "state_followup"
+      ]
+    },
+    {
+      "turn": 39,
+      "role": "assistant",
+      "text": "Do you mean a Saturday SLOT-GEN at LOC-HYD for general physician?",
+      "tags": []
+    },
+    {
+      "turn": 40,
+      "role": "user",
+      "text": "What is my pet's name?",
+      "tags": [
+        "probe_N"
+      ]
+    },
+    {
+      "turn": 41,
+      "role": "assistant",
+      "text": "I do not have that information in the clinic knowledge base or your saved profile.",
+      "tags": []
+    },
+    {
+      "turn": 42,
+      "role": "user",
+      "text": "I prefer morning slots going forward.",
+      "tags": [
+        "fact"
+      ]
+    },
+    {
+      "turn": 43,
+      "role": "user",
+      "text": "How many leave days can employees carry? wait that is wrong domain. What is FU-7?",
+      "tags": [
+        "kb"
+      ]
+    },
+    {
+      "turn": 44,
+      "role": "assistant",
+      "text": "FU-7 is a free follow-up within 7 days for the same complaint under P-204.",
+      "tags": []
+    },
+    {
+      "turn": 45,
+      "role": "user",
+      "text": "Nice weather today.",
+      "tags": [
+        "low_importance"
+      ]
+    },
+    {
+      "turn": 46,
+      "role": "assistant",
+      "text": "Glad to hear it. Anything else for your care plan?",
+      "tags": []
+    },
+    {
+      "turn": 47,
+      "role": "user",
+      "text": "My preferred doctor ID is DR-GP-17.",
+      "tags": [
+        "fact"
+      ]
+    },
+    {
+      "turn": 48,
+      "role": "user",
+      "text": "Actually change preferred doctor to DR-GP-22.",
+      "tags": [
+        "fact_update"
+      ]
+    },
+    {
+      "turn": 49,
+      "role": "user",
+      "text": "I decided to keep LOC-HYD as primary centre.",
+      "tags": [
+        "episode"
+      ]
+    },
+    {
+      "turn": 50,
+      "role": "user",
+      "text": "ok bye",
+      "tags": [
+        "low_importance"
+      ]
+    },
+    {
+      "turn": 51,
+      "role": "user",
+      "text": "Can you clarify evening hours on Sunday at LOC-HYD?",
+      "tags": [
+        "clarification",
+        "kb"
+      ]
+    },
+    {
+      "turn": 52,
+      "role": "assistant",
+      "text": "Sundays LOC-HYD urgent care is 09:00 to 13:00 only; evenings are closed.",
+      "tags": []
+    },
+    {
+      "turn": 53,
+      "role": "user",
+      "text": "And for Saturday?",
+      "tags": [
+        "state_followup"
+      ]
+    },
+    {
+      "turn": 54,
+      "role": "assistant",
+      "text": "Saturday follows HRS-WD: 08:00 to 20:00 at LOC-HYD.",
+      "tags": []
+    },
+    {
+      "turn": 55,
+      "role": "user",
+      "text": "great thanks",
+      "tags": [
+        "low_importance"
+      ]
+    },
+    {
+      "turn": 56,
+      "role": "user",
+      "text": "What does LAB-CBC cover?",
+      "tags": [
+        "kb"
+      ]
+    },
+    {
+      "turn": 57,
+      "role": "assistant",
+      "text": "LAB-CBC is complete blood count with same-day results before 14:00 if drawn before 10:00.",
+      "tags": []
+    },
+    {
+      "turn": 58,
+      "role": "user",
+      "text": "I prefer English for SMS reminders.",
+      "tags": [
+        "fact"
+      ]
+    },
+    {
+      "turn": 59,
+      "role": "assistant",
+      "text": "Saved SMS language preference English.",
+      "tags": []
+    },
+    {
+      "turn": 60,
+      "role": "user",
+      "text": "Actually I prefer Telugu for SMS reminders.",
+      "tags": [
+        "fact_update"
+      ]
+    },
+    {
+      "turn": 61,
+      "role": "assistant",
+      "text": "Updated SMS language to Telugu.",
+      "tags": []
+    },
+    {
+      "turn": 62,
+      "role": "user",
+      "text": "Where is IMG-MRI available?",
+      "tags": [
+        "kb"
+      ]
+    },
+    {
+      "turn": 63,
+      "role": "assistant",
+      "text": "IMG-MRI is available only at LOC-BLR.",
+      "tags": []
+    },
+    {
+      "turn": 64,
+      "role": "user",
+      "text": "Please note I decided against LOC-BLR for routine visits.",
+      "tags": [
+        "episode"
+      ]
+    },
+    {
+      "turn": 65,
+      "role": "assistant",
+      "text": "Logged your location decision episode.",
+      "tags": []
+    },
+    {
+      "turn": 66,
+      "role": "user",
+      "text": "What is my sms language now?",
+      "tags": [
+        "probe_U"
+      ]
+    },
+    {
+      "turn": 67,
+      "role": "assistant",
+      "text": "Telugu.",
+      "tags": []
+    },
+    {
+      "turn": 68,
+      "role": "user",
+      "text": "thanks again",
+      "tags": [
+        "low_importance"
+      ]
+    },
+    {
+      "turn": 69,
+      "role": "user",
+      "text": "Is AUTH-PRE needed for expensive procedures?",
+      "tags": [
+        "kb"
+      ]
+    },
+    {
+      "turn": 70,
+      "role": "assistant",
+      "text": "AUTH-PRE is required for planned procedures above INR 15,000.",
+      "tags": []
+    },
+    {
+      "turn": 71,
+      "role": "user",
+      "text": "ok goodbye",
+      "tags": [
+        "low_importance"
+      ]
+    }
+  ]
+}

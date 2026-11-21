@@ -9,43 +9,19 @@
 **Author:** Venkata Srinivasa Rao Tunuguntla (`venkat-tunuguntla`)  
 **GitHub:** [bits-pgaiml-cgai/pcam-zg517-a1-recallbot](https://github.com/bits-pgaiml-cgai/pcam-zg517-a1-recallbot)
 
-RecallBot is a task-oriented assistant that answers from a clinic knowledge base with hybrid retrieval (dense + BM25 + RRF), completes an appointment booking via slot filling, and remembers a returning user across Session A and Session B with semantic and episodic memory.
+RecallBot answers clinic policy/FAQ questions with hybrid retrieval (own BM25 + dense + RRF), completes appointment booking with confirm-before-write, and remembers a returning user across Session A → process restart → Session B.
 
-## Variant constraints
+## Variant
 
 | Item | Value |
 |------|--------|
 | Domain | Clinic appointment desk |
-| Twist | Time-bound facts (validity dates on docs and user facts) |
+| Twist | Time-bound facts (`valid_from` / `valid_to`) |
 | Trim window `k` | 5 |
 | Context window | 4,096 tokens |
 | Daily users (Task 5) | 5,000 |
-
-## Repository layout
-
-```text
-pcam-zg517-a1-recallbot/
-  README.md
-  requirements.txt
-  src/                 # dialogue pipeline, retrieval, memory
-  skills/              # procedural memory (system prompt, task steps)
-  tests/               # BM25 and RRF CS4 worked-example tests
-  data/kb/             # domain knowledge-base documents
-  data/test_conversation.json
-  data/kb_questions.json
-  data/probes.json
-  data/surprise_probes.json
-  db/                  # SQLite / JSON back-end
-  index/               # KB vector index
-  memory/              # semantic + episodic stores (persist across sessions)
-  logs/calls.jsonl
-  results/probe_results.csv
-  results/hit_rate.csv
-  results/plots/
-  docs/
-  report.pdf           # at most 8 pages + appendices (submission)
-  video_link.txt
-```
+| Embedding | `all-MiniLM-L6-v2`, dim 384, mean pooling |
+| Index | flat NumPy cosine (corpus small; HNSW optional later) |
 
 ## Setup
 
@@ -58,28 +34,53 @@ pip install -r requirements.txt
 
 ## Reproduce runs
 
-Commands will be filled as modules land. Planned entry points:
-
 ```bash
-# BM25 / RRF unit tests (CS4 examples)
-python -m pytest tests/
+# 1) Task 1 data (KB + conversation + probes)
+python scripts/generate_task1_data.py
 
-# Session A / B with a config: full | trim | summary | no_rag | hybrid | hybrid_sem | hybrid_mem
-python -m src.run_session --session A --config hybrid_mem --user U1
+# 2) BM25 / RRF CS4 tests
+python -m pytest tests/ -q
 
-# Hit-rate table
+# 3) Build chunk indexes (128 and 512)
+python -m src.build_index
+
+# 4) Hit-rate table
 python -m src.eval_retrieval
 
-# Probe evaluation
-python -m src.eval_probes --config hybrid_mem
+# 5) Session A then Session B as SEPARATE processes (hybrid_mem)
+python -m src.run_session --session A --config hybrid_mem --run-id r_hm_A
+python -m src.run_session --session B --config hybrid_mem --run-id r_hm_B
+
+# 6) STM strategies on Session A
+python -m src.run_session --session A --config full --run-id r_full_A
+python -m src.run_session --session A --config trim --run-id r_trim_A
+python -m src.run_session --session A --config summary --run-id r_sum_A
+python -m src.plot_tokens
+
+# 7) Ablation configs (A then B each)
+python -m src.run_session --session A --config no_rag --run-id r_nr_A
+python -m src.run_session --session B --config no_rag --run-id r_nr_B
+python -m src.run_session --session A --config hybrid --run-id r_hy_A
+python -m src.run_session --session B --config hybrid --run-id r_hy_B
+python -m src.run_session --session A --config hybrid_sem --run-id r_hs_A
+python -m src.run_session --session B --config hybrid_sem --run-id r_hs_B
+
+# 8) Probes
+python -m src.eval_probes --config hybrid_mem --run-id r_probes
 ```
 
-## Integrity notes
+## Architecture (function map)
 
-- Session B must run as a **separate process**; memory is loaded from disk under `memory/`.
-- Every LLM, embedding, and tool call appends one line to `logs/calls.jsonl` (never hand-edited).
-- Core BM25, RRF, episodic scoring, and memory CRUD are implemented in this repo (no LangChain/LlamaIndex memory or hybrid search).
+NLU `src.nlu.parse_utterance` → state `DialogueState.update_from_nlu` → dialogue manager `DialogueManager.handle_turn` → tools `search_kb` / `get_appointment` / `book_slot` → memories `SemanticMemory` / `EpisodicMemory` → NLG `generate_reply`.
 
-## LMS zip name
+Procedural memory lives in `skills/` and is loaded at run time.
+
+## Integrity
+
+- Session B is a separate process; memory loads from `memory/`.
+- `logs/calls.jsonl` is append-only from code.
+- BM25, RRF, episodic score, chunker, state tracker, DM, and memory CRUD are implemented here (no LangChain/LlamaIndex memory/hybrid).
+
+## LMS zip
 
 `<BITS_ID>_V31_MP1.zip`

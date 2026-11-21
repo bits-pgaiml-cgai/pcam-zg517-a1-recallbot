@@ -1,0 +1,118 @@
+[
+  {
+    "probe_id": "P-R1",
+    "category": "R",
+    "session": "B",
+    "question": "Which city did I say I am in?",
+    "expected": "Hyderabad"
+  },
+  {
+    "probe_id": "P-R2",
+    "category": "R",
+    "session": "B",
+    "question": "What specialty did I ask for?",
+    "expected": "general physician"
+  },
+  {
+    "probe_id": "P-U1",
+    "category": "U",
+    "session": "B",
+    "question": "What is my budget now?",
+    "expected": "1200"
+  },
+  {
+    "probe_id": "P-U2",
+    "category": "U",
+    "session": "B",
+    "question": "Who is my preferred doctor now?",
+    "expected": "DR-GP-22"
+  },
+  {
+    "probe_id": "P-F1",
+    "category": "F",
+    "session": "B",
+    "question": "What was my allergy?",
+    "expected": "does not know / not on file"
+  },
+  {
+    "probe_id": "P-F2",
+    "category": "F",
+    "session": "B",
+    "question": "What was my old address?",
+    "expected": "does not know"
+  },
+  {
+    "probe_id": "P-E1",
+    "category": "E",
+    "session": "B",
+    "question": "What did I book last time, and did I have a problem with it?",
+    "expected": "APT-1001 Friday 16:00; crowding complaint"
+  },
+  {
+    "probe_id": "P-E2",
+    "category": "E",
+    "session": "B",
+    "question": "What location decision did I confirm?",
+    "expected": "LOC-HYD primary centre"
+  },
+  {
+    "probe_id": "P-K1",
+    "category": "K",
+    "session": "B",
+    "question": "What is the refund window for plan P-204?",
+    "expected": "14 calendar days",
+    "doc_id": "POL-REFUND-2026"
+  },
+  {
+    "probe_id": "P-K2",
+    "category": "K",
+    "session": "A",
+    "question": "What does E-4021 mean?",
+    "expected": "insurance eligibility check failed",
+    "doc_id": "ERR-CODES"
+  },
+  {
+    "probe_id": "P-N1",
+    "category": "N",
+    "session": "B",
+    "question": "What is my pet's name?",
+    "expected": "I do not have that information in the clinic knowledge base or your saved profile."
+  },
+  {
+    "probe_id": "P-N2",
+    "category": "N",
+    "session": "B",
+    "question": "What is my passport number?",
+    "expected": "I do not have that information in the clinic knowledge base or your saved profile."
+  },
+  {
+    "probe_id": "P-S1",
+    "category": "S",
+    "session": "B",
+    "question": "And for Saturday?",
+    "expected": "Saturday hours/slot follow-up from dialogue state"
+  },
+  {
+    "probe_id": "P-S2",
+    "category": "S",
+    "session": "A",
+    "question": "Yes, confirm the booking.",
+    "expected": "DB write only after confirmation"
+  },
+  {
+    "probe_id": "P-T1",
+    "category": "T",
+    "session": "B",
+    "question": "Using today's date, what refund window applies for P-204?",
+    "expected": "14 days from 2026 policy; not 7 days from 2025",
+    "twist": "B"
+  },
+  {
+    "probe_id": "P-T2",
+    "category": "T",
+    "session": "B",
+    "question": "Is WAIT-48 still the new-patient wait target?",
+    "expected": "No; WAIT-24 is current for 2026",
+    "twist": "B"
+  }
+]

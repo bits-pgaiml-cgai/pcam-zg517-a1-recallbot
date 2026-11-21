@@ -1,0 +1,253 @@
+[
+  {
+    "doc_id": "POL-REFUND-2025",
+    "title": "Refund and Cancellation Policy 2025",
+    "version": "2025",
+    "valid_from": "2025-01-01",
+    "valid_to": "2025-12-31",
+    "section": "Billing > Refunds",
+    "codes": [
+      "P-204",
+      "RFD-7D",
+      "CXL-24H"
+    ],
+    "body": "\nClinicCare refund and cancellation policy for calendar year 2025.\nPlan code P-204 covers standard outpatient consults. Under P-204 the refund window\nis 7 calendar days from the payment date when the appointment has not been consumed.\nCode RFD-7D means a seven-day refund eligibility for unused prepaid consults.\nCancellation code CXL-24H requires at least 24 hours notice before the booked slot.\nLate cancellations within 24 hours forfeit 50 percent of the prepaid fee.\nNo-shows forfeit the full prepaid amount for P-204 visits in 2025.\nRefunds are processed to the original payment method within 10 business days.\nEmergency department visits and procedure packages are not covered by P-204 refunds.\nPatients must raise refund requests through the front desk or the patient portal.\nThis 2025 policy is superseded by the 2026 refund policy after 2025-12-31.\nKeep historical records of 2025 cancellations for audit for twenty-four months.\n",
+    "path": "data\\kb\\POL-REFUND-2025.md",
+    "word_count": 455
+  },
+  {
+    "doc_id": "POL-REFUND-2026",
+    "title": "Refund and Cancellation Policy 2026",
+    "version": "2026",
+    "valid_from": "2026-01-01",
+    "valid_to": "2099-12-31",
+    "section": "Billing > Refunds",
+    "codes": [
+      "P-204",
+      "RFD-14D",
+      "CXL-12H"
+    ],
+    "body": "\nClinicCare refund and cancellation policy for calendar year 2026 (current).\nPlan code P-204 still labels standard outpatient consults. Under the 2026 rules for\nP-204 the refund window is 14 calendar days from payment when the appointment is unused.\nCode RFD-14D replaces RFD-7D and means a fourteen-day refund eligibility.\nCancellation code CXL-12H now requires only 12 hours notice before the booked slot.\nLate cancellations within 12 hours forfeit 40 percent of the prepaid fee.\nNo-shows forfeit 80 percent of the prepaid amount for P-204 visits in 2026.\nRefunds are processed within 5 business days to the original payment method.\nSame-day telehealth reschedules are free once per month under plan P-204.\nThis document is the authoritative refund policy while valid_from and valid_to hold.\nOlder 2025 refund rules must not be used for appointments paid in 2026.\n",
+    "path": "data\\kb\\POL-REFUND-2026.md",
+    "word_count": 446
+  },
+  {
+    "doc_id": "POL-APPT-2025",
+    "title": "Appointment Booking Rules 2025",
+    "version": "2025",
+    "valid_from": "2025-01-01",
+    "valid_to": "2025-12-31",
+    "section": "Operations > Appointments",
+    "codes": [
+      "SLOT-GEN",
+      "SLOT-SPEC",
+      "WAIT-48"
+    ],
+    "body": "\nAppointment booking rules for ClinicCare in 2025.\nGeneral physician slots use code SLOT-GEN and are 20 minutes long.\nSpecialist slots use code SLOT-SPEC and are 30 minutes long.\nWAIT-48 means new patients may wait up to 48 hours for the first available SLOT-GEN.\nSame-day SLOT-SPEC bookings require supervisor approval in 2025.\nPatients may hold at most two future appointments across all clinics.\nWalk-ins are accepted only for SLOT-GEN after 4 pm if capacity remains.\n",
+    "path": "data\\kb\\POL-APPT-2025.md",
+    "word_count": 380
+  },
+  {
+    "doc_id": "POL-APPT-2026",
+    "title": "Appointment Booking Rules 2026",
+    "version": "2026",
+    "valid_from": "2026-01-01",
+    "valid_to": "2099-12-31",
+    "section": "Operations > Appointments",
+    "codes": [
+      "SLOT-GEN",
+      "SLOT-SPEC",
+      "WAIT-24",
+      "TELE-OK"
+    ],
+    "body": "\nAppointment booking rules for ClinicCare in 2026 (current).\nSLOT-GEN remains 20 minutes. SLOT-SPEC remains 30 minutes.\nWAIT-24 replaces WAIT-48: new patients should get a SLOT-GEN within 24 hours.\nTELE-OK marks telehealth-eligible specialties: dermatology, endocrinology, and GP follow-ups.\nSame-day SLOT-SPEC is allowed without supervisor approval when TELE-OK applies.\nPatients may hold three future appointments in 2026.\nOnline check-in opens 60 minutes before the slot via the patient portal.\n",
+    "path": "data\\kb\\POL-APPT-2026.md",
+    "word_count": 379
+  },
+  {
+    "doc_id": "FAQ-HOURS",
+    "title": "Clinic hours and locations FAQ",
+    "version": "2026",
+    "valid_from": "2026-01-01",
+    "valid_to": "2099-12-31",
+    "section": "FAQ > Hours",
+    "codes": [
+      "LOC-HYD",
+      "LOC-BLR",
+      "HRS-WD"
+    ],
+    "body": "\nClinic hours FAQ. Location code LOC-HYD is the Hyderabad Jubilee Hills centre.\nLocation code LOC-BLR is the Bengaluru Koramangala centre.\nWeekday hours code HRS-WD: Monday to Saturday 08:00 to 20:00 for both centres.\nSundays are closed except for LOC-HYD urgent care 09:00 to 13:00.\nPublic holiday schedules are posted 7 days in advance on the portal.\nParking is free for the first two hours at LOC-HYD and paid at LOC-BLR.\n",
+    "path": "data\\kb\\FAQ-HOURS.md",
+    "word_count": 382
+  },
+  {
+    "doc_id": "FAQ-INSURANCE",
+    "title": "Insurance and cashless FAQ",
+    "version": "2026",
+    "valid_from": "2026-01-01",
+    "valid_to": "2099-12-31",
+    "section": "FAQ > Insurance",
+    "codes": [
+      "INS-STAR",
+      "INS-HDFC",
+      "AUTH-PRE"
+    ],
+    "body": "\nInsurance FAQ for ClinicCare. Cashless partners include INS-STAR (Star Health) and\nINS-HDFC (HDFC Ergo). Pre-authorisation code AUTH-PRE must be obtained for planned\nprocedures above INR 15,000. GP consults under plan P-204 usually need no AUTH-PRE.\nPatients should carry the insurance card and a government photo ID.\nDenied cashless claims can be filed for reimbursement within 30 days.\n",
+    "path": "data\\kb\\FAQ-INSURANCE.md",
+    "word_count": 363
+  },
+  {
+    "doc_id": "SVC-LAB",
+    "title": "Laboratory service notes",
+    "version": "2026",
+    "valid_from": "2026-01-01",
+    "valid_to": "2099-12-31",
+    "section": "Services > Lab",
+    "codes": [
+      "LAB-CBC",
+      "LAB-LFT",
+      "LAB-FAST"
+    ],
+    "body": "\nLaboratory service notes. Test code LAB-CBC is complete blood count with same-day\nresults before 14:00 if drawn before 10:00. LAB-LFT is liver function panel with\n24-hour turnaround. LAB-FAST means 8 to 12 hours fasting is required before the draw.\nHome collection is available within 8 km of LOC-HYD for an extra fee.\nCritical values are called to the ordering physician within one hour.\n",
+    "path": "data\\kb\\SVC-LAB.md",
+    "word_count": 363
+  },
+  {
+    "doc_id": "SVC-IMAGING",
+    "title": "Imaging service notes",
+    "version": "2026",
+    "valid_from": "2026-01-01",
+    "valid_to": "2099-12-31",
+    "section": "Services > Imaging",
+    "codes": [
+      "IMG-XRAY",
+      "IMG-USG",
+      "IMG-MRI"
+    ],
+    "body": "\nImaging service notes. IMG-XRAY is walk-in chest and limb X-ray at both locations.\nIMG-USG requires a booked slot; abdominal ultrasound needs 6 hours fasting.\nIMG-MRI is available only at LOC-BLR and needs AUTH-PRE for insured patients.\nReports for IMG-XRAY are ready in 2 hours; IMG-USG in 4 hours; IMG-MRI in 24 hours.\nPregnant patients must inform the technologist before any ionising study.\n",
+    "path": "data\\kb\\SVC-IMAGING.md",
+    "word_count": 362
+  },
+  {
+    "doc_id": "FAQ-PRIVACY",
+    "title": "Patient privacy and records FAQ",
+    "version": "2026",
+    "valid_from": "2026-01-01",
+    "valid_to": "2099-12-31",
+    "section": "FAQ > Privacy",
+    "codes": [
+      "REC-REQ",
+      "OTP-VIEW"
+    ],
+    "body": "\nPrivacy FAQ. Medical records requests use code REC-REQ and are fulfilled in 5 working days.\nPortal viewing uses OTP-VIEW one-time passwords sent to the registered mobile number.\nClinicCare never shares clinical notes with employers without written consent.\nMinors need a guardian present for the first visit and for REC-REQ pickup.\n",
+    "path": "data\\kb\\FAQ-PRIVACY.md",
+    "word_count": 356
+  },
+  {
+    "doc_id": "FAQ-VACCINE",
+    "title": "Vaccination desk FAQ",
+    "version": "2026",
+    "valid_from": "2026-01-01",
+    "valid_to": "2099-12-31",
+    "section": "FAQ > Vaccines",
+    "codes": [
+      "VAX-FLU",
+      "VAX-HEP",
+      "VAX-COVID"
+    ],
+    "body": "\nVaccination desk FAQ. VAX-FLU is seasonal influenza vaccine offered from June to October.\nVAX-HEP covers hepatitis B adult schedule. VAX-COVID boosters follow national guidance.\nBring prior immunisation card when available. Observation of 15 minutes is mandatory.\n",
+    "path": "data\\kb\\FAQ-VACCINE.md",
+    "word_count": 336
+  },
+  {
+    "doc_id": "SVC-PHARMACY",
+    "title": "In-house pharmacy notes",
+    "version": "2026",
+    "valid_from": "2026-01-01",
+    "valid_to": "2099-12-31",
+    "section": "Services > Pharmacy",
+    "codes": [
+      "RX-GEN",
+      "RX-CTRL"
+    ],
+    "body": "\nPharmacy notes. RX-GEN covers generic substitutions unless the prescription marks\ndispense as written. RX-CTRL are controlled medicines requiring original prescription\nand ID verification. Pharmacy at LOC-HYD is open during HRS-WD hours.\n",
+    "path": "data\\kb\\SVC-PHARMACY.md",
+    "word_count": 325
+  },
+  {
+    "doc_id": "ERR-CODES",
+    "title": "Portal and billing error codes",
+    "version": "2026",
+    "valid_from": "2026-01-01",
+    "valid_to": "2099-12-31",
+    "section": "Support > Errors",
+    "codes": [
+      "E-4010",
+      "E-4021",
+      "E-5002"
+    ],
+    "body": "\nPortal error codes. E-4010 means session expired; ask the patient to log in again.\nE-4021 means insurance eligibility check failed; verify INS-STAR or INS-HDFC card data.\nE-5002 means payment gateway timeout; retry after five minutes or pay at the counter.\nFront desk should log each error code with the patient ID in the incident form.\n",
+    "path": "data\\kb\\ERR-CODES.md",
+    "word_count": 367
+  },
+  {
+    "doc_id": "FAQ-FOLLOWUP",
+    "title": "Follow-up visit FAQ",
+    "version": "2026",
+    "valid_from": "2026-01-01",
+    "valid_to": "2099-12-31",
+    "section": "FAQ > Follow-up",
+    "codes": [
+      "FU-7",
+      "FU-30"
+    ],
+    "body": "\nFollow-up FAQ. FU-7 means a free follow-up within 7 days for the same complaint under P-204.\nFU-30 means a discounted follow-up within 30 days for chronic disease reviews.\nTelehealth follow-ups are allowed when TELE-OK applies to the specialty.\n",
+    "path": "data\\kb\\FAQ-FOLLOWUP.md",
+    "word_count": 332
+  },
+  {
+    "doc_id": "SVC-EMERGENCY",
+    "title": "Urgent care service notes",
+    "version": "2026",
+    "valid_from": "2026-01-01",
+    "valid_to": "2099-12-31",
+    "section": "Services > Urgent",
+    "codes": [
+      "URG-TRI",
+      "AMB-CALL"
+    ],
+    "body": "\nUrgent care notes. URG-TRI is nurse triage at LOC-HYD Sunday mornings.\nAMB-CALL is the ambulance coordination desk number listed on the portal.\nChest pain, stroke signs, and major trauma should go to a tertiary ER, not ClinicCare.\n",
+    "path": "data\\kb\\SVC-EMERGENCY.md",
+    "word_count": 337
+  },
+  {
+    "doc_id": "FAQ-PREP",
+    "title": "Visit preparation FAQ",
+    "version": "2026",
+    "valid_from": "2026-01-01",
+    "valid_to": "2099-12-31",
+    "section": "FAQ > Prep",
+    "codes": [
+      "PREP-NEW",
+      "PREP-LAB"
+    ],
+    "body": "\nVisit preparation FAQ. PREP-NEW for new patients: arrive 20 minutes early with ID and\nprior reports. PREP-LAB: follow LAB-FAST instructions when blood work is ordered.\nBring a medication list including over-the-counter drugs and supplements.\n",
+    "path": "data\\kb\\FAQ-PREP.md",
+    "word_count": 328
+  },
+  {
+    "doc_id": "POL-NOSHOW",
+    "title": "No-show and late policy",
+    "version": "2026",
+    "valid_from": "2026-01-01",
+    "valid_to": "2099-12-31",
+    "section": "Operations > No-show",
+    "codes": [
+      "NS-1",
+      "NS-3"
+    ],
+    "body": "\nNo-show policy. NS-1 is the first no-show warning recorded on the patient profile.\nNS-3 means three no-shows in six months may require prepaid booking for future SLOT-SPEC.\nPatients can clear an NS-1 flag by attending the next confirmed appointment on time.\n",
+    "path": "data\\kb\\POL-NOSHOW.md",
+    "word_count": 341
+  }
+]

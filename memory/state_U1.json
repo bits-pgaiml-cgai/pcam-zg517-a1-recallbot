@@ -1,0 +1,20 @@
+{
+  "user_id": "U1",
+  "intent": "kb_question",
+  "name": null,
+  "city": null,
+  "location": null,
+  "specialty": null,
+  "day": "Saturday",
+  "time": null,
+  "doctor_id": null,
+  "budget": null,
+  "allergy": null,
+  "time_preference": null,
+  "pending_booking": {},
+  "awaiting_confirm": false,
+  "last_topic": "kb",
+  "last_kb_doc": "POL-APPT-2026",
+  "booked_appointment_id": null,
+  "clarification_asked": null
+}

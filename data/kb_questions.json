@@ -1,0 +1,184 @@
+[
+  {
+    "question_id": "Q01",
+    "question": "What is the refund window for plan P-204 under the current policy?",
+    "gold_span": "refund window is 14 calendar days",
+    "doc_id": "POL-REFUND-2026",
+    "type": "code"
+  },
+  {
+    "question_id": "Q02",
+    "question": "What does code RFD-14D mean?",
+    "gold_span": "fourteen-day refund eligibility",
+    "doc_id": "POL-REFUND-2026",
+    "type": "code"
+  },
+  {
+    "question_id": "Q03",
+    "question": "How much notice does CXL-12H require?",
+    "gold_span": "12 hours notice",
+    "doc_id": "POL-REFUND-2026",
+    "type": "code"
+  },
+  {
+    "question_id": "Q04",
+    "question": "What is WAIT-24 for new patients?",
+    "gold_span": "SLOT-GEN within 24 hours",
+    "doc_id": "POL-APPT-2026",
+    "type": "code"
+  },
+  {
+    "question_id": "Q05",
+    "question": "Which location code is Hyderabad Jubilee Hills?",
+    "gold_span": "LOC-HYD is the Hyderabad Jubilee Hills centre",
+    "doc_id": "FAQ-HOURS",
+    "type": "code"
+  },
+  {
+    "question_id": "Q06",
+    "question": "What does error E-4021 mean on the portal?",
+    "gold_span": "insurance eligibility check failed",
+    "doc_id": "ERR-CODES",
+    "type": "code"
+  },
+  {
+    "question_id": "Q07",
+    "question": "What does LAB-FAST require before blood draw?",
+    "gold_span": "8 to 12 hours fasting",
+    "doc_id": "SVC-LAB",
+    "type": "code"
+  },
+  {
+    "question_id": "Q08",
+    "question": "Where is IMG-MRI available?",
+    "gold_span": "available only at LOC-BLR",
+    "doc_id": "SVC-IMAGING",
+    "type": "code"
+  },
+  {
+    "question_id": "Q09",
+    "question": "How long do I have to get money back if I prepaid but never used the consult?",
+    "gold_span": "14 calendar days from payment",
+    "doc_id": "POL-REFUND-2026",
+    "type": "paraphrase"
+  },
+  {
+    "question_id": "Q10",
+    "question": "If I need to change my booking late, how close to the visit can I still cancel under today's rules?",
+    "gold_span": "12 hours notice before the booked slot",
+    "doc_id": "POL-REFUND-2026",
+    "type": "paraphrase"
+  },
+  {
+    "question_id": "Q11",
+    "question": "How quickly should a brand-new patient get a general doctor slot now?",
+    "gold_span": "within 24 hours",
+    "doc_id": "POL-APPT-2026",
+    "type": "paraphrase"
+  },
+  {
+    "question_id": "Q12",
+    "question": "Can I do a video visit for skin issues?",
+    "gold_span": "TELE-OK marks telehealth-eligible specialties: dermatology",
+    "doc_id": "POL-APPT-2026",
+    "type": "paraphrase"
+  },
+  {
+    "question_id": "Q13",
+    "question": "When are the centres open on a normal weekday?",
+    "gold_span": "Monday to Saturday 08:00 to 20:00",
+    "doc_id": "FAQ-HOURS",
+    "type": "paraphrase"
+  },
+  {
+    "question_id": "Q14",
+    "question": "Do I need special approval before a costly planned procedure on insurance?",
+    "gold_span": "AUTH-PRE must be obtained for planned procedures above INR 15,000",
+    "doc_id": "FAQ-INSURANCE",
+    "type": "paraphrase"
+  },
+  {
+    "question_id": "Q15",
+    "question": "How soon are chest film reports ready?",
+    "gold_span": "IMG-XRAY are ready in 2 hours",
+    "doc_id": "SVC-IMAGING",
+    "type": "paraphrase"
+  },
+  {
+    "question_id": "Q16",
+    "question": "What is the current refund window for P-204?",
+    "gold_span": "14 calendar days",
+    "doc_id": "POL-REFUND-2026",
+    "type": "new_version"
+  },
+  {
+    "question_id": "Q17",
+    "question": "Under current booking rules, what replaced WAIT-48?",
+    "gold_span": "WAIT-24 replaces WAIT-48",
+    "doc_id": "POL-APPT-2026",
+    "type": "new_version"
+  },
+  {
+    "question_id": "Q18",
+    "question": "What does FU-7 cover?",
+    "gold_span": "free follow-up within 7 days",
+    "doc_id": "FAQ-FOLLOWUP",
+    "type": "other"
+  },
+  {
+    "question_id": "Q19",
+    "question": "What is NS-3?",
+    "gold_span": "three no-shows in six months",
+    "doc_id": "POL-NOSHOW",
+    "type": "code"
+  },
+  {
+    "question_id": "Q20",
+    "question": "How do I request my medical records?",
+    "gold_span": "REC-REQ and are fulfilled in 5 working days",
+    "doc_id": "FAQ-PRIVACY",
+    "type": "code"
+  },
+  {
+    "question_id": "Q21",
+    "question": "What vaccine code is used for flu shots?",
+    "gold_span": "VAX-FLU is seasonal influenza",
+    "doc_id": "FAQ-VACCINE",
+    "type": "code"
+  },
+  {
+    "question_id": "Q22",
+    "question": "What does RX-CTRL require?",
+    "gold_span": "original prescription and ID verification",
+    "doc_id": "SVC-PHARMACY",
+    "type": "code"
+  },
+  {
+    "question_id": "Q23",
+    "question": "Who should not use ClinicCare for major trauma?",
+    "gold_span": "major trauma should go to a tertiary ER",
+    "doc_id": "SVC-EMERGENCY",
+    "type": "paraphrase"
+  },
+  {
+    "question_id": "Q24",
+    "question": "How early should a first-time visitor arrive?",
+    "gold_span": "arrive 20 minutes early",
+    "doc_id": "FAQ-PREP",
+    "type": "paraphrase"
+  },
+  {
+    "question_id": "Q25",
+    "question": "What does E-4010 indicate?",
+    "gold_span": "session expired",
+    "doc_id": "ERR-CODES",
+    "type": "code"
+  },
+  {
+    "question_id": "Q26",
+    "question": "How many future appointments can a patient hold in 2026?",
+    "gold_span": "hold three future appointments",
+    "doc_id": "POL-APPT-2026",
+    "type": "other"
+  }
+]
