@@ -25,34 +25,65 @@ RecallBot answers clinic policy/FAQ questions with hybrid retrieval (own BM25 + 
 
 ## Prayogshala (recommended)
 
-See [`docs/PRAYOGSHALA_SETUP.md`](docs/PRAYOGSHALA_SETUP.md).
+VMs are usually **Ubuntu**; Windows VMs are also supported.  
+Full guide: [`docs/PRAYOGSHALA_SETUP.md`](docs/PRAYOGSHALA_SETUP.md).
+
+### Ubuntu VM
 
 ```bash
-# Linux VM
-bash scripts/prayogshala_bootstrap.sh
-
-# Windows VM
-powershell -ExecutionPolicy Bypass -File scripts/prayogshala_bootstrap.ps1
+mkdir -p ~/Workspace/cgai-mp1 && cd ~/Workspace/cgai-mp1
+git clone https://github.com/bits-pgaiml-cgai/pcam-zg517-a1-recallbot.git
+cd pcam-zg517-a1-recallbot
+chmod +x scripts/prayogshala_bootstrap.sh
+bash scripts/prayogshala_bootstrap.sh .
 ```
 
-Or after clone + `pip install -r requirements.txt`:
+### Windows VM
+
+```powershell
+mkdir D:\cgai-mp1 -Force
+cd D:\cgai-mp1
+git clone https://github.com/bits-pgaiml-cgai/pcam-zg517-a1-recallbot.git
+cd pcam-zg517-a1-recallbot
+powershell -ExecutionPolicy Bypass -File scripts\prayogshala_bootstrap.ps1 -InPlace
+```
+
+### Already cloned (either OS)
 
 ```bash
-# Prefer MiniLM on Prayogshala (do NOT set hash)
+# Ubuntu
 unset RECALLBOT_EMBED_BACKEND
-python scripts/run_all.py
+export MPLBACKEND=Agg
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+python scripts/run_all.py --fresh-logs
 ```
 
-## Local setup
+```powershell
+# Windows
+Remove-Item Env:RECALLBOT_EMBED_BACKEND -ErrorAction SilentlyContinue
+$env:MPLBACKEND="Agg"
+python -m venv .venv; .\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+python scripts\run_all.py --fresh-logs
+```
+
+## Local setup (home PC)
 
 ```bash
-python -m venv .venv
-# Windows
-.venv\Scripts\activate
+# Ubuntu / macOS / WSL
+python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
+# If Hugging Face is blocked:
+export RECALLBOT_EMBED_BACKEND=hash
+```
 
-# If Hugging Face is blocked locally:
-set RECALLBOT_EMBED_BACKEND=hash
+```powershell
+# Windows
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+$env:RECALLBOT_EMBED_BACKEND="hash"
 ```
 
 ## Reproduce runs (manual)

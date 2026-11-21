@@ -3,10 +3,13 @@
 from __future__ import annotations
 
 import json
+import os
 from collections import defaultdict
-from pathlib import Path
 
 from src.config import LOGS_DIR, RESULTS_DIR
+
+# Headless Ubuntu / Prayogshala VMs have no display.
+os.environ.setdefault("MPLBACKEND", "Agg")
 
 
 def main():
@@ -23,6 +26,9 @@ def main():
             by[rec["config"]].append((rec["turn"], rec["input_tokens"]))
 
     try:
+        import matplotlib
+
+        matplotlib.use(os.environ.get("MPLBACKEND", "Agg"))
         import matplotlib.pyplot as plt
     except ImportError:
         print("matplotlib missing")

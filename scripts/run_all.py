@@ -1,8 +1,10 @@
-"""One-command pipeline for Prayogshala / local full evidence runs."""
+"""One-command pipeline for Prayogshala (Ubuntu/Windows) / local full evidence runs."""
 
 from __future__ import annotations
 
 import argparse
+import os
+import platform
 import shutil
 import subprocess
 import sys
@@ -10,10 +12,15 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 
+# Headless-safe defaults for Ubuntu Prayogshala VMs.
+os.environ.setdefault("MPLBACKEND", "Agg")
+os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
+
 
 def run(cmd: list[str]) -> None:
     print("\n==>", " ".join(cmd), flush=True)
-    subprocess.check_call(cmd, cwd=ROOT)
+    env = os.environ.copy()
+    subprocess.check_call(cmd, cwd=str(ROOT), env=env)
 
 
 def clear_runtime(keep_logs: bool = True) -> None:
@@ -45,14 +52,13 @@ def main():
     parser.add_argument("--fresh-logs", action="store_true")
     args = parser.parse_args()
 
-    env_prefix = []
     py = sys.executable
+    print(f"Platform: {platform.system()} {platform.release()} | Python: {py}")
 
     if args.embed_backend:
-        # Applied inside child processes via os.environ in wrapper commands.
-        import os
-
         os.environ["RECALLBOT_EMBED_BACKEND"] = args.embed_backend
+    elif "RECALLBOT_EMBED_BACKEND" in os.environ and not os.environ["RECALLBOT_EMBED_BACKEND"].strip():
+        os.environ.pop("RECALLBOT_EMBED_BACKEND", None)
 
     clear_runtime(keep_logs=not args.fresh_logs)
 
