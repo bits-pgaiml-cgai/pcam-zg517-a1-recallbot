@@ -93,6 +93,24 @@ python -m src.cost_scale
 python -m src.eval_probes --config hybrid_mem --probes surprise_probes.json --run-id r_surprise
 ```
 
+## Notebook
+
+Walkthrough + evidence runner (Prayogshala Ubuntu or local):
+
+[`notebooks/RecallBot_V31_Clinic_Desk.ipynb`](notebooks/RecallBot_V31_Clinic_Desk.ipynb)
+
+```bash
+# Ubuntu Prayogshala
+source .venv/bin/activate
+jupyter notebook notebooks/RecallBot_V31_Clinic_Desk.ipynb
+```
+
+```powershell
+# Local Windows
+.\.venv\Scripts\Activate.ps1
+jupyter notebook notebooks\RecallBot_V31_Clinic_Desk.ipynb
+```
+
 ## Architecture (function map)
 
 NLU `src.nlu.parse_utterance` → state `DialogueState.update_from_nlu` → dialogue manager `DialogueManager.handle_turn` → tools `search_kb` / `get_appointment` / `book_slot` → memories `SemanticMemory` / `EpisodicMemory` → NLG `generate_reply` (Ollama if up, else template).

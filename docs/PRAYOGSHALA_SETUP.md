@@ -21,6 +21,15 @@ chmod +x scripts/prayogshala_bootstrap.sh
 bash scripts/prayogshala_bootstrap.sh .
 ```
 
+### Notebook walkthrough
+
+```bash
+cd ~/Workspace/cgai-mp1/pcam-zg517-a1-recallbot
+source .venv/bin/activate
+pip install -q jupyter ipykernel
+jupyter notebook notebooks/RecallBot_V31_Clinic_Desk.ipynb
+```
+
 ### Faster smoke (skip ablation + 100k HNSW)
 
 ```bash
