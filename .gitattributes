@@ -5,3 +5,5 @@
 *.md text eol=lf
 *.json text eol=lf
 *.csv text eol=lf
+scripts/prayogshala_bootstrap.sh text eol=lf
+scripts/local_windows_bootstrap.ps1 text eol=crlf

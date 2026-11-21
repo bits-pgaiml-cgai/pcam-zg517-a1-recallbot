@@ -23,12 +23,16 @@ RecallBot answers clinic policy/FAQ questions with hybrid retrieval (own BM25 + 
 | Embedding | `all-MiniLM-L6-v2`, dim 384, mean pooling (hash fallback if HF blocked) |
 | Index | flat NumPy + FAISS HNSW experiment (`src.cost_scale`) |
 
-## Prayogshala (recommended)
+## Where to run
 
-VMs are usually **Ubuntu**; Windows VMs are also supported.  
-Full guide: [`docs/PRAYOGSHALA_SETUP.md`](docs/PRAYOGSHALA_SETUP.md).
+| Environment | OS | Script |
+|-------------|----|--------|
+| **Prayogshala** (graded MiniLM runs) | **Ubuntu VM only** | `scripts/prayogshala_bootstrap.sh` |
+| **Local PC** (dev / Zscaler) | **Windows** | `scripts/local_windows_bootstrap.ps1` |
 
-### Ubuntu VM
+Full Prayogshala guide: [`docs/PRAYOGSHALA_SETUP.md`](docs/PRAYOGSHALA_SETUP.md).
+
+### Prayogshala (Ubuntu VM)
 
 ```bash
 mkdir -p ~/Workspace/cgai-mp1 && cd ~/Workspace/cgai-mp1
@@ -38,53 +42,20 @@ chmod +x scripts/prayogshala_bootstrap.sh
 bash scripts/prayogshala_bootstrap.sh .
 ```
 
-### Windows VM
-
-```powershell
-mkdir D:\cgai-mp1 -Force
-cd D:\cgai-mp1
-git clone https://github.com/bits-pgaiml-cgai/pcam-zg517-a1-recallbot.git
-cd pcam-zg517-a1-recallbot
-powershell -ExecutionPolicy Bypass -File scripts\prayogshala_bootstrap.ps1 -InPlace
-```
-
-### Already cloned (either OS)
+Faster smoke:
 
 ```bash
-# Ubuntu
-unset RECALLBOT_EMBED_BACKEND
-export MPLBACKEND=Agg
-python3 -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
-python scripts/run_all.py --fresh-logs
+SKIP_ABLATION=1 SKIP_HNSW=1 bash scripts/prayogshala_bootstrap.sh .
 ```
+
+### Local Windows PC
 
 ```powershell
-# Windows
-Remove-Item Env:RECALLBOT_EMBED_BACKEND -ErrorAction SilentlyContinue
-$env:MPLBACKEND="Agg"
-python -m venv .venv; .\.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-python scripts\run_all.py --fresh-logs
+cd <path>\pcam-zg517-a1-recallbot
+powershell -ExecutionPolicy Bypass -File scripts\local_windows_bootstrap.ps1
 ```
 
-## Local setup (home PC)
-
-```bash
-# Ubuntu / macOS / WSL
-python3 -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
-# If Hugging Face is blocked:
-export RECALLBOT_EMBED_BACKEND=hash
-```
-
-```powershell
-# Windows
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-$env:RECALLBOT_EMBED_BACKEND="hash"
-```
+Local default uses `RECALLBOT_EMBED_BACKEND=hash` when Hugging Face is blocked. Prefer Prayogshala Ubuntu for MiniLM evidence.
 
 ## Reproduce runs (manual)
 

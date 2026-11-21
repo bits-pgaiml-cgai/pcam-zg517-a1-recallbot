@@ -1,4 +1,4 @@
-"""One-command pipeline for Prayogshala (Ubuntu/Windows) / local full evidence runs."""
+"""One-command pipeline for Prayogshala Ubuntu VM and local (e.g. Windows) evidence runs."""
 
 from __future__ import annotations
 
