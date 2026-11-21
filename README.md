@@ -95,9 +95,11 @@ python -m src.eval_probes --config hybrid_mem --probes surprise_probes.json --ru
 
 ## Notebook
 
-Walkthrough + evidence runner (Prayogshala Ubuntu or local):
+Walkthrough + evidence runner:
 
 [`notebooks/RecallBot_V31_Clinic_Desk.ipynb`](notebooks/RecallBot_V31_Clinic_Desk.ipynb)
+
+**Google Colab:** open the notebook (or upload it), run the **Colab bootstrap** cell first (clones the public repo + installs deps). Keep `RECALLBOT_LLM=template` (no Ollama on Colab). Copy `logs/ results/ memory/` to Drive before the runtime ends.
 
 ```bash
 # Ubuntu Prayogshala

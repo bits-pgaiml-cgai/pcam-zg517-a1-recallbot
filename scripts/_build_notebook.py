@@ -44,7 +44,13 @@ cells.append(
 
 This notebook is a **walkthrough + evidence runner** for the `pcam-zg517-a1-recallbot` package. Core BM25, RRF, dialogue, and memory logic live in `src/` (not LangChain/LlamaIndex).
 
-**Recommended:** run on **Prayogshala Ubuntu** for MiniLM embeddings. On local Windows with Zscaler, set `RECALLBOT_EMBED_BACKEND=hash`.
+**Where to run**
+
+| Environment | Notes |
+|-------------|--------|
+| **Google Colab** | Use the Colab bootstrap cell below (clone + pip). MiniLM usually works. Ollama is not available → template NLG. |
+| **Prayogshala Ubuntu** | Preferred for LMS evidence; use `scripts/prayogshala_bootstrap.sh`. |
+| **Local Windows** | If Hugging Face is blocked, set `RECALLBOT_EMBED_BACKEND=hash`. |
 """,
         "c00",
     )
@@ -53,15 +59,82 @@ This notebook is a **walkthrough + evidence runner** for the `pcam-zg517-a1-reca
 cells.append(
     md(
         """
-## 0. Setup
+## 0a. Google Colab bootstrap (run first on Colab only)
 
-Run from the repo root (folder that contains `src/` and `requirements.txt`). On Prayogshala:
+Skip this section on Prayogshala / local Jupyter if the repo is already checked out.
 
-```bash
-cd ~/Workspace/cgai-mp1/pcam-zg517-a1-recallbot
-source .venv/bin/activate
-jupyter notebook notebooks/RecallBot_V31_Clinic_Desk.ipynb
-```
+1. Runtime → **CPU** is enough (GPU optional).  
+2. Run the next cell once per new runtime.  
+3. It clones the public GitHub repo, installs deps, and `cd`s into the project root.  
+4. Optional: mount Google Drive and copy `logs/`, `results/`, `memory/` out before the runtime disconnects.
+""",
+        "c01a",
+    )
+)
+
+cells.append(
+    code(
+        """
+# === Google Colab bootstrap ===
+import os
+import subprocess
+import sys
+from pathlib import Path
+
+IN_COLAB = False
+try:
+    import google.colab  # noqa: F401
+    IN_COLAB = True
+except Exception:
+    IN_COLAB = False
+
+REPO_URL = "https://github.com/bits-pgaiml-cgai/pcam-zg517-a1-recallbot.git"
+REPO_NAME = "pcam-zg517-a1-recallbot"
+
+if IN_COLAB:
+    print("Detected Google Colab")
+    os.chdir("/content")
+    repo_dir = Path("/content") / REPO_NAME
+    if not (repo_dir / "src").exists():
+        subprocess.check_call(["git", "clone", REPO_URL])
+    else:
+        print("Repo already present — pull latest")
+        subprocess.check_call(["git", "-C", str(repo_dir), "pull", "--ff-only"])
+    os.chdir(repo_dir)
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "-q", "-r", "requirements.txt"])
+    # Colab has no Ollama — force template NLG
+    os.environ["RECALLBOT_LLM"] = "template"
+    # Prefer MiniLM on Colab (HF usually works). Uncomment only if download fails:
+    # os.environ["RECALLBOT_EMBED_BACKEND"] = "hash"
+    print("Installed requirements and moved into", repo_dir)
+else:
+    print("Not Colab — assuming repo checkout / Prayogshala / local Jupyter")
+
+print("cwd =", Path.cwd().resolve())
+""",
+        "c01b",
+    )
+)
+
+cells.append(
+    code(
+        """
+# Optional on Colab: persist artifacts to Google Drive before runtime ends
+# from google.colab import drive
+# drive.mount("/content/drive")
+# !mkdir -p /content/drive/MyDrive/RecallBot_V31_artifacts
+# !cp -r logs results memory index db /content/drive/MyDrive/RecallBot_V31_artifacts/
+""",
+        "c01c",
+    )
+)
+
+cells.append(
+    md(
+        """
+## 0b. Project root + environment
+
+Works after Colab bootstrap, or when the notebook is opened from the repo / `notebooks/`.
 """,
         "c01",
     )
@@ -76,18 +149,28 @@ from pathlib import Path
 
 os.environ.setdefault("MPLBACKEND", "Agg")
 os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
-os.environ.setdefault("RECALLBOT_LLM", "template")
+os.environ.setdefault("RECALLBOT_LLM", os.environ.get("RECALLBOT_LLM", "template"))
 
 # Local Windows / Zscaler only:
 # os.environ["RECALLBOT_EMBED_BACKEND"] = "hash"
 
 ROOT = Path.cwd()
-if not (ROOT / "src").exists() and (ROOT.parent / "src").exists():
-    ROOT = ROOT.parent
-    os.chdir(ROOT)
+candidates = [
+    ROOT,
+    ROOT.parent,
+    Path("/content/pcam-zg517-a1-recallbot"),
+    ROOT / "pcam-zg517-a1-recallbot",
+]
+for cand in candidates:
+    if (cand / "src").exists() and (cand / "requirements.txt").exists():
+        ROOT = cand
+        os.chdir(ROOT)
+        break
+
 print("ROOT =", ROOT.resolve())
-assert (ROOT / "src").exists(), "Open the notebook from the repo (or notebooks/ under the repo)"
-sys.path.insert(0, str(ROOT))
+assert (ROOT / "src").exists(), "Repo root with src/ not found — run the Colab bootstrap cell first"
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 """,
         "c02",
     )
@@ -96,8 +179,9 @@ sys.path.insert(0, str(ROOT))
 cells.append(
     code(
         """
-# Optional once per fresh VM/kernel:
+# Non-Colab optional install (Prayogshala/local venv usually already has deps):
 # %pip -q install -r requirements.txt
+print("Python", sys.version.split()[0], "| embed backend env =", os.environ.get("RECALLBOT_EMBED_BACKEND", "<auto MiniLM>"))
 """,
         "c03",
     )
