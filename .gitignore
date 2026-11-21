@@ -35,5 +35,7 @@ Thumbs.db
 submission_*.zip
 *_MP1.zip
 *.faiss
-*.npy
 *.bin
+# Keep index/*.npy in repo so Session B loads without rebuild.
+!index/*.npy
+memory/*.npy
