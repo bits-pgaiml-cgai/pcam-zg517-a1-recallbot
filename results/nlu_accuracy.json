@@ -1,0 +1,159 @@
+{
+  "n": 22,
+  "accuracy": 1.0,
+  "approach": "rule/regex hybrid NLU (intent + entity patterns)",
+  "state_fields": [
+    "user_id",
+    "intent",
+    "name",
+    "city",
+    "location",
+    "specialty",
+    "day",
+    "time",
+    "doctor_id",
+    "budget",
+    "allergy",
+    "time_preference",
+    "pending_booking",
+    "awaiting_confirm",
+    "last_topic",
+    "last_kb_doc",
+    "booked_appointment_id",
+    "clarification_asked"
+  ],
+  "rows": [
+    {
+      "text": "Hi there",
+      "gold": "greet",
+      "pred": "greet",
+      "correct": 1
+    },
+    {
+      "text": "Hello",
+      "gold": "greet",
+      "pred": "greet",
+      "correct": 1
+    },
+    {
+      "text": "I live in Hyderabad",
+      "gold": "provide_fact",
+      "pred": "provide_fact",
+      "correct": 1
+    },
+    {
+      "text": "My budget for consults is 800 rupees",
+      "gold": "provide_fact",
+      "pred": "provide_fact",
+      "correct": 1
+    },
+    {
+      "text": "I am allergic to penicillin",
+      "gold": "provide_fact",
+      "pred": "provide_fact",
+      "correct": 1
+    },
+    {
+      "text": "Actually my budget is now 1200 rupees",
+      "gold": "update_fact",
+      "pred": "update_fact",
+      "correct": 1
+    },
+    {
+      "text": "Actually change preferred doctor to DR-GP-22",
+      "gold": "update_fact",
+      "pred": "update_fact",
+      "correct": 1
+    },
+    {
+      "text": "Please forget my allergy",
+      "gold": "forget_fact",
+      "pred": "forget_fact",
+      "correct": 1
+    },
+    {
+      "text": "Please forget my old address if any, and forget my allergy",
+      "gold": "forget_fact",
+      "pred": "forget_fact",
+      "correct": 1
+    },
+    {
+      "text": "What is the refund window for plan P-204?",
+      "gold": "kb_question",
+      "pred": "kb_question",
+      "correct": 1
+    },
+    {
+      "text": "What does E-4021 mean?",
+      "gold": "kb_question",
+      "pred": "kb_question",
+      "correct": 1
+    },
+    {
+      "text": "What is WAIT-24?",
+      "gold": "kb_question",
+      "pred": "kb_question",
+      "correct": 1
+    },
+    {
+      "text": "Please book a clinic appointment",
+      "gold": "book_start",
+      "pred": "book_start",
+      "correct": 1
+    },
+    {
+      "text": "I want to book an appointment",
+      "gold": "book_start",
+      "pred": "book_start",
+      "correct": 1
+    },
+    {
+      "text": "Friday afternoon works",
+      "gold": "provide_slot",
+      "pred": "provide_slot",
+      "correct": 1
+    },
+    {
+      "text": "Yes, confirm the booking",
+      "gold": "confirm_yes",
+      "pred": "confirm_yes",
+      "correct": 1
+    },
+    {
+      "text": "yes",
+      "gold": "confirm_yes",
+      "pred": "confirm_yes",
+      "correct": 1
+    },
+    {
+      "text": "And for Saturday?",
+      "gold": "state_followup",
+      "pred": "state_followup",
+      "correct": 1
+    },
+    {
+      "text": "The waiting area was crowded last time; please note my complaint",
+      "gold": "complaint",
+      "pred": "complaint",
+      "correct": 1
+    },
+    {
+      "text": "Thanks for your help so far",
+      "gold": "chitchat",
+      "pred": "chitchat",
+      "correct": 1
+    },
+    {
+      "text": "nice weather today",
+      "gold": "chitchat",
+      "pred": "chitchat",
+      "correct": 1
+    },
+    {
+      "text": "ok bye",
+      "gold": "chitchat",
+      "pred": "chitchat",
+      "correct": 1
+    }
+  ]
+}

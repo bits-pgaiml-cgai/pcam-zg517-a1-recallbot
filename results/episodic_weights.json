@@ -1,0 +1,56 @@
+{
+  "balanced_weights": [
+    1.0,
+    1.0,
+    1.0
+  ],
+  "relevance_heavy_weights": [
+    0.5,
+    0.5,
+    2.0
+  ],
+  "balanced_accuracy": 1.0,
+  "relevance_heavy_accuracy": 1.0,
+  "kept": "relevance-heavy",
+  "justification": "Keep relevance-heavy when E probes need semantic match to bookings/complaints; otherwise keep balanced so recent high-importance events still surface.",
+  "balanced_details": [
+    {
+      "probe_id": "P-E1",
+      "hit": 1,
+      "top": [
+        "I decided to keep LOC-HYD as primary centre.",
+        "Please note I decided against LOC-BLR for routine visits.",
+        "Reflection: Booked APT-1001 {'name': 'Anita Rao', 'specialty': 'general physicia"
+      ]
+    },
+    {
+      "probe_id": "P-E2",
+      "hit": 1,
+      "top": [
+        "I decided to keep LOC-HYD as primary centre.",
+        "Please note I decided against LOC-BLR for routine visits.",
+        "Reflection: Booked APT-1001 {'name': 'Anita Rao', 'specialty': 'general physicia"
+      ]
+    }
+  ],
+  "relevance_details": [
+    {
+      "probe_id": "P-E1",
+      "hit": 1,
+      "top": [
+        "I decided to keep LOC-HYD as primary centre.",
+        "Please note I decided against LOC-BLR for routine visits.",
+        "Reflection: Booked APT-1001 {'name': 'Anita Rao', 'specialty': 'general physicia"
+      ]
+    },
+    {
+      "probe_id": "P-E2",
+      "hit": 1,
+      "top": [
+        "I decided to keep LOC-HYD as primary centre.",
+        "Please note I decided against LOC-BLR for routine visits.",
+        "Reflection: Booked APT-1001 {'name': 'Anita Rao', 'specialty': 'general physicia"
+      ]
+    }
+  ]
+}

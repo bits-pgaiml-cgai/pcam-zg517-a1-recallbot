@@ -5,6 +5,7 @@ from pathlib import Path
 from typing import Dict, List, Optional
 
 from src.config import CHAT_MODEL, FALLBACK_SENTENCE, SKILLS_DIR
+from src.llm import chat_ollama
 from src.logging_util import log_call
 from src.tokens import count_tokens
 
@@ -34,6 +35,33 @@ def generate_reply(
     turn: int,
     retrieved_tokens: int,
 ) -> str:
+    system = load_system_prompt()
+    ctx_bits = []
+    for c in kb_chunks[:3]:
+        ctx_bits.append(f"[{c.get('chunk_id')}] {c.get('text', '')[:400]}")
+    for f in semantic_facts[:5]:
+        ctx_bits.append(f"FACT {f.get('key')}={f.get('value')}")
+    for e in episodes[:3]:
+        ctx_bits.append(f"EPISODE {e.get('text', '')[:200]}")
+    rag_block = "\n".join(ctx_bits)
+    ollama_prompt = (
+        f"History:\n{history_text}\n\nContext:\n{rag_block}\n\n"
+        f"User: {user_text}\nIntent: {intent}\n"
+        f"If answer unknown, reply exactly: {FALLBACK_SENTENCE}"
+    )
+    llm_reply = chat_ollama(
+        ollama_prompt,
+        system=system,
+        config=config,
+        user=user,
+        session=session,
+        turn=turn,
+        temperature=0.0 if intent in {"confirm_yes", "kb_question", "provide_slot"} else 0.3,
+        retrieved_tokens=retrieved_tokens,
+    )
+    if llm_reply:
+        return llm_reply
+
     start = time.time()
     reply = _template_reply(
         user_text=user_text,

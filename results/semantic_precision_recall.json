@@ -1,0 +1,87 @@
+{
+  "precision": 1.0,
+  "recall": 0.6666666666666666,
+  "active_facts": [
+    {
+      "user": "U1",
+      "key": "city",
+      "value": "Hyderabad",
+      "source_turn": 3,
+      "date": "2026-11-21",
+      "valid_from": "2026-11-21",
+      "valid_to": "2099-12-31",
+      "status": "active"
+    },
+    {
+      "user": "U1",
+      "key": "preferred_location",
+      "value": "LOC-HYD",
+      "source_turn": 3,
+      "date": "2026-11-21",
+      "valid_from": "2026-11-21",
+      "valid_to": "2099-12-31",
+      "status": "active"
+    },
+    {
+      "user": "U1",
+      "key": "name",
+      "value": "Anita Rao",
+      "source_turn": 5,
+      "date": "2026-11-21",
+      "valid_from": "2026-11-21",
+      "valid_to": "2099-12-31",
+      "status": "active"
+    },
+    {
+      "user": "U1",
+      "key": "specialty",
+      "value": "general physician",
+      "source_turn": 5,
+      "date": "2026-11-21",
+      "valid_from": "2026-11-21",
+      "valid_to": "2099-12-31",
+      "status": "active"
+    },
+    {
+      "user": "U1",
+      "key": "budget",
+      "value": "1200",
+      "source_turn": 15,
+      "date": "2026-11-21",
+      "valid_from": "2026-11-21",
+      "valid_to": "2099-12-31",
+      "status": "active"
+    },
+    {
+      "user": "U1",
+      "key": "time_preference",
+      "value": "morning",
+      "source_turn": 42,
+      "date": "2026-11-21",
+      "valid_from": "2026-11-21",
+      "valid_to": "2099-12-31",
+      "status": "active"
+    },
+    {
+      "user": "U1",
+      "key": "preferred_doctor",
+      "value": "DR-GP-22",
+      "source_turn": 48,
+      "date": "2026-11-21",
+      "valid_from": "2026-11-21",
+      "valid_to": "2099-12-31",
+      "status": "active"
+    },
+    {
+      "user": "U1",
+      "key": "sms_language",
+      "value": "Telugu",
+      "source_turn": 60,
+      "date": "2026-11-21",
+      "valid_from": "2026-11-21",
+      "valid_to": "2099-12-31",
+      "status": "active"
+    }
+  ],
+  "gold_count": 12
+}

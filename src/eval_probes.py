@@ -1,4 +1,4 @@
-"""Run probes against a fresh DialogueManager (expects memory already from Session A if needed)."""
+"""Run probes against DialogueManager (loads memory from disk after Session A/B)."""
 
 from __future__ import annotations
 
@@ -6,11 +6,23 @@ import argparse
 import csv
 import json
 import re
+from pathlib import Path
 
 from src.config import DATA_DIR, RESULTS_DIR
 from src.dialogue import DialogueManager
 from src.logging_util import set_run_id
 from src.retrieval import load_index
+
+FIELDNAMES = [
+    "run_id",
+    "config",
+    "probe_id",
+    "category",
+    "expected",
+    "answer",
+    "correct",
+    "judged_by",
+]
 
 
 def judge(answer: str, expected: str) -> int:
@@ -22,9 +34,20 @@ def judge(answer: str, expected: str) -> int:
             or "not have" in a
             or "not on file" in a
             or "do not know" in a
+            or "need a pending booking" in a
         )
     tokens = [t for t in re.split(r"[^a-z0-9\-]+", e) if len(t) > 2][:4]
     return int(any(t in a for t in tokens) or e[:20] in a)
+
+
+def merge_rows(path: Path, new_rows: list) -> list:
+    existing = []
+    if path.exists():
+        with open(path, encoding="utf-8") as f:
+            existing = list(csv.DictReader(f))
+    configs = {r["config"] for r in new_rows}
+    kept = [r for r in existing if r.get("config") not in configs]
+    return kept + new_rows
 
 
 def main():
@@ -32,12 +55,17 @@ def main():
     parser.add_argument("--config", default="hybrid_mem")
     parser.add_argument("--run-id", default="r_probes")
     parser.add_argument("--chunk-size", type=int, default=512)
+    parser.add_argument("--probes", default="probes.json", help="probes.json or surprise_probes.json")
     args = parser.parse_args()
     set_run_id(args.run_id)
 
-    probes = json.loads((DATA_DIR / "probes.json").read_text(encoding="utf-8"))
-    index = load_index(args.chunk_size)
+    probes = json.loads((DATA_DIR / args.probes).read_text(encoding="utf-8"))
+    probes = [p for p in probes if p.get("question") and p["question"] != "PLACEHOLDER"]
+    if not probes:
+        print(f"No runnable probes in {args.probes}")
+        return
 
+    index = load_index(args.chunk_size)
     flags = {
         "no_rag": (False, False, False),
         "hybrid": (True, False, False),
@@ -63,14 +91,14 @@ def main():
     rows = []
     for i, p in enumerate(probes, start=1):
         out = dm.handle_turn(p["question"], session=p.get("session", "B"), turn=900 + i)
-        correct = judge(out["reply"], p["expected"])
+        correct = judge(out["reply"], p.get("expected", ""))
         rows.append(
             {
                 "run_id": args.run_id,
                 "config": args.config,
                 "probe_id": p["probe_id"],
-                "category": p["category"],
-                "expected": p["expected"],
+                "category": p.get("category", "S"),
+                "expected": p.get("expected", ""),
                 "answer": out["reply"],
                 "correct": correct,
                 "judged_by": "manual",
@@ -78,25 +106,21 @@ def main():
         )
         print(p["probe_id"], correct, out["reply"][:100])
 
-    out_path = RESULTS_DIR / "probe_results.csv"
-    with open(out_path, "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(
-            f,
-            fieldnames=[
-                "run_id",
-                "config",
-                "probe_id",
-                "category",
-                "expected",
-                "answer",
-                "correct",
-                "judged_by",
-            ],
-        )
+    per_cfg = RESULTS_DIR / f"probe_results_{args.config}.csv"
+    with open(per_cfg, "w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=FIELDNAMES)
         writer.writeheader()
         writer.writerows(rows)
-    acc = sum(r["correct"] for r in rows) / len(rows)
-    print(f"accuracy={acc:.3f} wrote {out_path}")
+
+    out_path = RESULTS_DIR / "probe_results.csv"
+    merged = merge_rows(out_path, rows)
+    with open(out_path, "w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=FIELDNAMES)
+        writer.writeheader()
+        writer.writerows(merged)
+
+    acc = sum(int(r["correct"]) for r in rows) / len(rows)
+    print(f"accuracy={acc:.3f} wrote {per_cfg} and merged {out_path}")
 
 
 if __name__ == "__main__":

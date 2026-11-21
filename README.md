@@ -20,64 +20,93 @@ RecallBot answers clinic policy/FAQ questions with hybrid retrieval (own BM25 + 
 | Trim window `k` | 5 |
 | Context window | 4,096 tokens |
 | Daily users (Task 5) | 5,000 |
-| Embedding | `all-MiniLM-L6-v2`, dim 384, mean pooling |
-| Index | flat NumPy cosine (corpus small; HNSW optional later) |
+| Embedding | `all-MiniLM-L6-v2`, dim 384, mean pooling (hash fallback if HF blocked) |
+| Index | flat NumPy + FAISS HNSW experiment (`src.cost_scale`) |
 
-## Setup
+## Prayogshala (recommended)
+
+See [`docs/PRAYOGSHALA_SETUP.md`](docs/PRAYOGSHALA_SETUP.md).
+
+```bash
+# Linux VM
+bash scripts/prayogshala_bootstrap.sh
+
+# Windows VM
+powershell -ExecutionPolicy Bypass -File scripts/prayogshala_bootstrap.ps1
+```
+
+Or after clone + `pip install -r requirements.txt`:
+
+```bash
+# Prefer MiniLM on Prayogshala (do NOT set hash)
+unset RECALLBOT_EMBED_BACKEND
+python scripts/run_all.py
+```
+
+## Local setup
 
 ```bash
 python -m venv .venv
 # Windows
 .venv\Scripts\activate
 pip install -r requirements.txt
+
+# If Hugging Face is blocked locally:
+set RECALLBOT_EMBED_BACKEND=hash
 ```
 
-## Reproduce runs
+## Reproduce runs (manual)
 
 ```bash
-# 1) Task 1 data (KB + conversation + probes)
 python scripts/generate_task1_data.py
-
-# 2) BM25 / RRF CS4 tests
 python -m pytest tests/ -q
-
-# 3) Build chunk indexes (128 and 512)
 python -m src.build_index
-
-# 4) Hit-rate table
+python -m src.eval_nlu
 python -m src.eval_retrieval
 
-# 5) Session A then Session B as SEPARATE processes (hybrid_mem)
+# Session A then Session B as SEPARATE processes
 python -m src.run_session --session A --config hybrid_mem --run-id r_hm_A
 python -m src.run_session --session B --config hybrid_mem --run-id r_hm_B
+python -m src.eval_probes --config hybrid_mem --run-id r_hm_probes
+python -m src.eval_semantic
+python -m src.eval_episodic_weights
 
-# 6) STM strategies on Session A
+# STM strategies
 python -m src.run_session --session A --config full --run-id r_full_A
 python -m src.run_session --session A --config trim --run-id r_trim_A
 python -m src.run_session --session A --config summary --run-id r_sum_A
 python -m src.plot_tokens
 
-# 7) Ablation configs (A then B each)
+# Ablation
 python -m src.run_session --session A --config no_rag --run-id r_nr_A
 python -m src.run_session --session B --config no_rag --run-id r_nr_B
-python -m src.run_session --session A --config hybrid --run-id r_hy_A
-python -m src.run_session --session B --config hybrid --run-id r_hy_B
-python -m src.run_session --session A --config hybrid_sem --run-id r_hs_A
-python -m src.run_session --session B --config hybrid_sem --run-id r_hs_B
+python -m src.eval_probes --config no_rag --run-id r_nr_probes
+# ... hybrid, hybrid_sem, hybrid_mem similarly
+python -m src.eval_ablation
 
-# 8) Probes
-python -m src.eval_probes --config hybrid_mem --run-id r_probes
+# Task 5
+python -m src.cost_scale
+
+# Surprise probes (after 24/11/2026 LMS release)
+python -m src.eval_probes --config hybrid_mem --probes surprise_probes.json --run-id r_surprise
 ```
 
 ## Architecture (function map)
 
-NLU `src.nlu.parse_utterance` → state `DialogueState.update_from_nlu` → dialogue manager `DialogueManager.handle_turn` → tools `search_kb` / `get_appointment` / `book_slot` → memories `SemanticMemory` / `EpisodicMemory` → NLG `generate_reply`.
+NLU `src.nlu.parse_utterance` → state `DialogueState.update_from_nlu` → dialogue manager `DialogueManager.handle_turn` → tools `search_kb` / `get_appointment` / `book_slot` → memories `SemanticMemory` / `EpisodicMemory` → NLG `generate_reply` (Ollama if up, else template).
 
-Procedural memory lives in `skills/` and is loaded at run time.
+Procedural memory: `skills/system_prompt_v1.md`, `skills/book_appointment_steps_v1.md`.
+
+## Decoding
+
+| Turn type | Setting |
+|-----------|---------|
+| Task / booking / KB | temperature 0 (greedy) |
+| Open chitchat | temperature 0.3 |
 
 ## Integrity
 
-- Session B is a separate process; memory loads from `memory/`.
+- Session B is a **separate process**; memory loads from `memory/`.
 - `logs/calls.jsonl` is append-only from code.
 - BM25, RRF, episodic score, chunker, state tracker, DM, and memory CRUD are implemented here (no LangChain/LlamaIndex memory/hybrid).
 

@@ -1,0 +1,56 @@
+{
+  "window_k": 5,
+  "token_economics": [
+    {
+      "config": "trim",
+      "price_row": "GPT-4o",
+      "daily_users": 5000,
+      "turns_per_convo": 13,
+      "mean_input_tokens": 142.76923076923077,
+      "mean_output_tokens": 27.307692307692307,
+      "prefix_tokens": 1181,
+      "prefix_reaches_min_cache": true,
+      "min_cache_tokens": 1024,
+      "monthly_cost_no_cache_usd": 1228.5,
+      "monthly_cost_with_cache_usd": 3411.19,
+      "assumed_tokens": false,
+      "note_if_prefix_short": null
+    },
+    {
+      "config": "hybrid_mem",
+      "price_row": "GPT-4o",
+      "daily_users": 5000,
+      "turns_per_convo": 56,
+      "mean_input_tokens": 185.58928571428572,
+      "mean_output_tokens": 40.92857142857143,
+      "prefix_tokens": 1181,
+      "prefix_reaches_min_cache": true,
+      "min_cache_tokens": 1024,
+      "monthly_cost_no_cache_usd": 7335.38,
+      "monthly_cost_with_cache_usd": 15838.5,
+      "assumed_tokens": false,
+      "note_if_prefix_short": null
+    }
+  ],
+  "year_vectors": {
+    "kb_chunks": 32,
+    "semantic": 100000,
+    "episodic": 200000,
+    "total": 300032,
+    "flat_bytes": 460849152,
+    "hnsw_m16_bytes": 499553280,
+    "flat_gb": 0.429,
+    "hnsw_m16_gb": 0.465
+  },
+  "latency": {
+    "n": 100000,
+    "dim": 384,
+    "flat_latency_ms": 8.525,
+    "hnsw_latency_ms": 0.448,
+    "hnsw_recall_at_1": 0.88,
+    "m": 16,
+    "ef_search": 64,
+    "recommend": "At year-1 vectors for 5k users, prefer HNSW M=16, ef_search=64 (good recall/latency). Flat is fine only while N << 100k."
+  },
+  "price_table_source": "CS3 Session-3 Token Economics table (May 2025 indicative)"
+}

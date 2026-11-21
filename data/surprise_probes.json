@@ -1,0 +1,32 @@
+[
+  {
+    "probe_id": "S1",
+    "note": "Replace with LMS surprise probe 1 adapted to clinic domain on 24/11/2026",
+    "question": "PLACEHOLDER",
+    "expected": "PLACEHOLDER"
+  },
+  {
+    "probe_id": "S2",
+    "note": "Replace with LMS surprise probe 2",
+    "question": "PLACEHOLDER",
+    "expected": "PLACEHOLDER"
+  },
+  {
+    "probe_id": "S3",
+    "note": "Replace with LMS surprise probe 3",
+    "question": "PLACEHOLDER",
+    "expected": "PLACEHOLDER"
+  },
+  {
+    "probe_id": "S4",
+    "note": "Replace with LMS surprise probe 4",
+    "question": "PLACEHOLDER",
+    "expected": "PLACEHOLDER"
+  },
+  {
+    "probe_id": "S5",
+    "note": "Replace with LMS surprise probe 5",
+    "question": "PLACEHOLDER",
+    "expected": "PLACEHOLDER"
+  }
+]

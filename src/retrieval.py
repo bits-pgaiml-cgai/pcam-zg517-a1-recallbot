@@ -144,6 +144,8 @@ class HybridIndex:
         as_of: Optional[str] = None,
         apply_time_filter: bool = True,
     ) -> List[Dict]:
+        if as_of is None and apply_time_filter:
+            as_of = AS_OF_DATE_DEFAULT
         as_of_val = as_of if apply_time_filter else None
         # Twist B: rewrite superseded codes toward current equivalents before search.
         q_search = query

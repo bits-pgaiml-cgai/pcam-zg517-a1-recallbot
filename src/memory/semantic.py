@@ -67,6 +67,7 @@ class SemanticMemory:
             (r"change preferred doctor to (DR-[A-Z0-9-]+)", "preferred_doctor"),
             (r"\b(DR-[A-Z0-9-]+)\b", "preferred_doctor"),
             (r"prefer (morning|evening) slots", "time_preference"),
+            (r"prefer ([A-Za-z]+) for SMS", "sms_language"),
             (r"General physician", "specialty"),
         ]
         low = text.lower()
