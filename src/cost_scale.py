@@ -69,16 +69,23 @@ def estimate_monthly_cost(
 
     cost_no_cache = (in_tok / 1e6) * prices["input"] + (out_tok / 1e6) * prices["output"]
 
-    # With caching: fixed prefix charged at cached rate after first hit (OpenAI 50% of input).
+    # With caching: fixed prefix at cached rate; remainder of measured input at full rate.
+    # If logged mean_input < prefix (template NLG under-counts full prompt), bill
+    # prefix + max(0, mean_input) so the cache case never exceeds a full-prefix bill.
     cacheable = prefix_tokens >= prices["min_cache_tokens"]
     if cacheable:
-        dynamic_in = max(0.0, stats["mean_input"] - prefix_tokens) * turns * convos
+        billed_input = max(float(stats["mean_input"]), float(prefix_tokens))
+        dynamic_per_turn = max(0.0, billed_input - prefix_tokens)
         cached_in = prefix_tokens * turns * convos
+        dynamic_in = dynamic_per_turn * turns * convos
         cost_cache = (
             (cached_in / 1e6) * prices["cached_input"]
             + (dynamic_in / 1e6) * prices["input"]
             + (out_tok / 1e6) * prices["output"]
         )
+        # Comparable no-cache bill when prefix would be present in a real LLM prompt.
+        in_tok_full = billed_input * turns * convos
+        cost_no_cache = (in_tok_full / 1e6) * prices["input"] + (out_tok / 1e6) * prices["output"]
     else:
         cost_cache = None
 
