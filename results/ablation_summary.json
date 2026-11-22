@@ -2,71 +2,71 @@
   "table": [
     {
       "config": "no_rag",
-      "accuracy_overall": 0.4375,
+      "accuracy_overall": 0.8125,
       "accuracy_by_category": {
-        "R": 0.0,
-        "U": 0.0,
+        "R": 1.0,
+        "U": 0.5,
         "F": 1.0,
-        "E": 0.0,
-        "K": 0.0,
+        "E": 1.0,
+        "K": 1.0,
         "N": 1.0,
-        "S": 1.0,
-        "T": 0.5
+        "S": 0.0,
+        "T": 1.0
       },
-      "mean_input_tokens_per_chat_turn": 93.55357142857143,
-      "median_latency_ms": 0,
-      "total_tokens_logged": 6500
+      "mean_input_tokens_per_chat_turn": 1300.4285714285713,
+      "median_latency_ms": 10,
+      "total_tokens_logged": 74456
     },
     {
       "config": "hybrid",
       "accuracy_overall": 0.6875,
       "accuracy_by_category": {
-        "R": 0.0,
-        "U": 0.0,
+        "R": 0.5,
+        "U": 0.5,
         "F": 1.0,
         "E": 0.5,
-        "K": 1.0,
+        "K": 0.5,
         "N": 1.0,
-        "S": 1.0,
+        "S": 0.5,
         "T": 1.0
       },
-      "mean_input_tokens_per_chat_turn": 190.96428571428572,
-      "median_latency_ms": 0.0,
-      "total_tokens_logged": 38146
+      "mean_input_tokens_per_chat_turn": 1515.4464285714287,
+      "median_latency_ms": 30.5,
+      "total_tokens_logged": 111177
     },
     {
       "config": "hybrid_sem",
-      "accuracy_overall": 0.9375,
+      "accuracy_overall": 0.8125,
       "accuracy_by_category": {
         "R": 1.0,
-        "U": 1.0,
+        "U": 0.5,
         "F": 1.0,
-        "E": 0.5,
-        "K": 1.0,
+        "E": 1.0,
+        "K": 0.5,
         "N": 1.0,
-        "S": 1.0,
+        "S": 0.5,
         "T": 1.0
       },
-      "mean_input_tokens_per_chat_turn": 174.35714285714286,
-      "median_latency_ms": 0.0,
-      "total_tokens_logged": 12676
+      "mean_input_tokens_per_chat_turn": 1550.8392857142858,
+      "median_latency_ms": 2.5,
+      "total_tokens_logged": 88836
     },
     {
       "config": "hybrid_mem",
-      "accuracy_overall": 1.0,
+      "accuracy_overall": 0.8125,
       "accuracy_by_category": {
         "R": 1.0,
-        "U": 1.0,
+        "U": 0.5,
         "F": 1.0,
-        "E": 1.0,
-        "K": 1.0,
+        "E": 0.5,
+        "K": 0.5,
         "N": 1.0,
         "S": 1.0,
         "T": 1.0
       },
-      "mean_input_tokens_per_chat_turn": 185.58928571428572,
-      "median_latency_ms": 0.0,
-      "total_tokens_logged": 27480
+      "mean_input_tokens_per_chat_turn": 1644.669642857143,
+      "median_latency_ms": 3.0,
+      "total_tokens_logged": 188849
     }
   ],
   "notes": "Run Session A/B for each config, then eval_probes per config, before relying on this table. Rubric scores (coherence/relevance/groundedness/safety) can be added manually or via LLM judge."

@@ -18,9 +18,9 @@
       "probe_id": "P-E1",
       "hit": 1,
       "top": [
-        "I decided to keep LOC-HYD as primary centre.",
-        "Please note I decided against LOC-BLR for routine visits.",
-        "Reflection: Booked APT-1001 {'name': 'Anita Rao', 'specialty': 'general physicia"
+        "Reflection: Booked APT-1001 {'name': 'Anita Rao', 'specialty': 'general physicia",
+        "Booked APT-1001 {'name': 'Anita Rao', 'specialty': 'general physician', 'day': '",
+        "Please note I decided against LOC-BLR for routine visits."
       ]
     },
     {
@@ -28,7 +28,7 @@
       "hit": 1,
       "top": [
         "I decided to keep LOC-HYD as primary centre.",
-        "Please note I decided against LOC-BLR for routine visits.",
+        "The waiting area was crowded last time; please note my complaint.",
         "Reflection: Booked APT-1001 {'name': 'Anita Rao', 'specialty': 'general physicia"
       ]
     }
@@ -38,9 +38,9 @@
       "probe_id": "P-E1",
       "hit": 1,
       "top": [
-        "I decided to keep LOC-HYD as primary centre.",
-        "Please note I decided against LOC-BLR for routine visits.",
-        "Reflection: Booked APT-1001 {'name': 'Anita Rao', 'specialty': 'general physicia"
+        "Reflection: Booked APT-1001 {'name': 'Anita Rao', 'specialty': 'general physicia",
+        "Booked APT-1001 {'name': 'Anita Rao', 'specialty': 'general physician', 'day': '",
+        "Please note I decided against LOC-BLR for routine visits."
       ]
     },
     {
@@ -48,7 +48,7 @@
       "hit": 1,
       "top": [
         "I decided to keep LOC-HYD as primary centre.",
-        "Please note I decided against LOC-BLR for routine visits.",
+        "The waiting area was crowded last time; please note my complaint.",
         "Reflection: Booked APT-1001 {'name': 'Anita Rao', 'specialty': 'general physicia"
       ]
     }

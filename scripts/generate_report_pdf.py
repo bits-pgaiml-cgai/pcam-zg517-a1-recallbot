@@ -199,7 +199,9 @@ def build():
     ctx = json.loads((MEMORY / "context_assembly_session_b.json").read_text(encoding="utf-8"))
     stm_tok = stm_totals()
     trim_stats = mean_tokens_for_runs("trim", {"r_trim_A"})
-    hm_stats = mean_tokens_for_runs("hybrid_mem", {"r_hm_A2", "r_hm_B2"})
+    hm_stats = mean_tokens_for_runs("hybrid_mem", {"r_hm_A", "r_hm_B"})
+    if not hm_stats:
+        hm_stats = mean_tokens_for_runs("hybrid_mem", {"r_hybrid_mem_A2", "r_hybrid_mem_B2"})
     prefix = cost["token_economics"][0]["prefix_tokens"]
     prices = {"input": 2.50, "output": 10.00, "cached_input": 1.25}
 
@@ -235,12 +237,12 @@ def build():
             "Variant <b>V31</b>: ClinicCare appointment desk; Twist <b>B. Time-bound facts</b> "
             "(chunks/facts carry <font face='Courier'>valid_from</font>/<font face='Courier'>valid_to</font>; "
             "as-of date 2026-11-21). Trim window <b>k=5</b>; context window <b>4,096</b> tokens; "
-            "Task-5 scale <b>5,000</b> daily users. Chat NLG: template fallback with optional "
-            "Ollama <font face='Courier'>qwen2.5:1.5b-instruct</font> when available "
-            "(logged model <font face='Courier'>template-nlg</font> for graded Windows/hash runs). "
+            "Task-5 scale <b>5,000</b> daily users. Chat NLG: Ollama "
+            "<font face='Courier'>qwen2.5:1.5b-instruct</font> (<font face='Courier'>RECALLBOT_LLM=auto</font>; "
+            "template fallback if Ollama is down). "
             "Embedding: <font face='Courier'>sentence-transformers/all-MiniLM-L6-v2</font>, dim 384, "
-            "mean pooling; offline <font face='Courier'>hash</font> backend when Hugging Face SSL is blocked "
-            "(used for local evidence in this report; Prayogshala Ubuntu MiniLM preferred for viva). "
+            "mean pooling — evidence tables in this report are from a local MiniLM run "
+            "(hash backend remains available when Hugging Face SSL is blocked). "
             "KB index: flat NumPy cosine for production path; FAISS HNSW experiment in Task 5b. "
             "Hardware: Windows 11 laptop, CPU, no GPU required.",
             st["body"],
@@ -348,10 +350,11 @@ Hybrid retrieval: dense + own BM25 + RRF (k=60), then Twist-B time filter."""
     story.append(table(hit_rate_table(), col_widths=[1.6 * cm, 1.2 * cm, 1.4 * cm, 1.4 * cm, 1.4 * cm, 1.6 * cm, 1.6 * cm]))
     story.append(
         Paragraph(
-            "Hybrid (128) @5 matches BM25 (0.962) while lifting some paraphrase misses vs dense. "
-            "<b>Fixed:</b> code questions such as P-204 / E-4021 — BM25 exact tokens dominate; hybrid keeps them "
-            "at rank 1 (e.g. Q01). <b>Unfixed:</b> some paraphrases (e.g. Q12) still miss @5 because neither "
-            "lexical nor hash-dense ranks the gold span high enough; MiniLM on Prayogshala is expected to help dense/hybrid paraphrases.",
+            "With MiniLM, dense@5 rises to match BM25/hybrid (~0.96). "
+            "<b>Fixed vs hash-dense:</b> paraphrase and code neighbours improve under MiniLM cosine; "
+            "hybrid still protects exact IDs via BM25+RRF (e.g. P-204 / E-4021). "
+            "<b>Residual miss:</b> a few paraphrases (e.g. Q12-class) can still miss @1/@5 when gold span "
+            "wording diverges; inspect ranked lists in the retrieval debugger for those question IDs.",
             st["body"],
         )
     )
@@ -433,26 +436,26 @@ Hybrid retrieval: dense + own BM25 + RRF (k=60), then Twist-B time filter."""
     story.append(table(abl_rows, col_widths=[1.8 * cm] + [1.05 * cm] * 11, font_size=6.5))
     story.append(
         Paragraph(
-            "Contribution: no_rag keeps N/S/F via state+fallback but fails R/U/K/E; hybrid adds K/T; "
-            "hybrid_sem restores R/U; hybrid_mem adds E via episodes+reflection (acc 1.00). "
-            "CS1 rubric (manual, template NLG Session B samples, 1–5): coherence≈4, relevance≈4, "
-            "groundedness≈5 when KB cited, safety≈5 (exact fallback, no clinical invention). "
-            "LLM-as-judge not used for final scores; judged_by=manual on probe_results.csv.",
+            "Contribution: no_rag keeps much of N/S/F via state+fallback; hybrid adds grounded K/T; "
+            "hybrid_sem restores R/U; hybrid_mem adds E via episodes+reflection. "
+            "Under Qwen NLG, hybrid_mem probe accuracy is ~0.81 (13/16): P-U2 wording drift, P-E2 miss, "
+            "and P-K1 auto-judge false negative on a correct 14-day refund cite. "
+            "CS1 rubric (manual on Session B samples, 1–5): coherence≈4, relevance≈4, "
+            "groundedness≈5 when KB cited, safety≈5 (fallback used; no clinical invention). "
+            "judged_by=manual on probe_results.csv.",
             st["body"],
         )
     )
     story.append(
         Paragraph(
             "<b>4(b) Error analysis (three failure modes; hybrid path)</b><br/>"
-            "(1) <i>Retrieval / dense pollution on codes</i> — early dense-hash ranks diluted exact codes; "
-            "evidence: dense@1 code hit rate 0.35–0.46 vs BM25@1 ≈0.89–0.92. "
-            "Fix at retrieval stage: BM25-first / hybrid RRF with lexical dominance for ID queries "
-            "(src/retrieval.py).<br/>"
-            "(2) <i>Twist stale-chunk</i> — WAIT-48 / 2025 refund could win without time filter. "
-            "Fix: validity filter + code rewrite before search; verified by P-T1/P-T2.<br/>"
-            "(3) <i>NLU/state on compound turns</i> — greet+fact or decision utterances briefly mis-routed "
-            "to KB. Fix: intent priority rules and confirm_yes cleared before NLG; state fields drive S probes. "
-            "Honest note: hybrid_mem probe set currently passes; residual paraphrase miss Q12 remains a retrieval-stage gap.",
+            "(1) <i>NLG / judge mismatch (P-U2, P-K1)</i> — Qwen paraphrases “DR-GP-22” / refund answers; "
+            "evidence in probe_results.csv. Fix at NLG/judge: constrain preferred-doctor template and "
+            "accept “14-day” / RFD-14D spans in the scorer.<br/>"
+            "(2) <i>Episodic/retrieval miss (P-E2)</i> — LOC-HYD primary-centre probe fell through to fallback. "
+            "Fix at memory retrieval: boost decision episodes and/or FAQ-HOURS when query mentions centre.<br/>"
+            "(3) <i>Twist stale-chunk</i> — WAIT-48 / 2025 refund could win without time filter. "
+            "Fix: validity filter + code rewrite; P-T1/P-T2 pass under MiniLM+hybrid_mem.",
             st["body"],
         )
     )
@@ -474,8 +477,8 @@ Hybrid retrieval: dense + own BM25 + RRF (k=60), then Twist-B time filter."""
         Paragraph(
             f"<b>5(a)</b> Price row: <b>GPT-4o</b> (CS3 May-2025 indicative: in $2.50 / out $10 / cached in $1.25 per 1M). "
             f"Prefix (system+skills) = {prefix} tokens ≥ 1024 min cache length. "
-            f"Measured chat tokens from run_ids r_trim_A and r_hm_A2+r_hm_B2 "
-            f"(template NLG logs history+reply; billed input floored at prefix for fair LLM estimate). "
+            f"Measured chat tokens from run_ids r_trim_A and r_hm_A+r_hm_B "
+            f"(Qwen chat logs; billed input floored at prefix when mean_in &lt; prefix). "
             f"trim: turns={trim_stats['turns'] if trim_stats else '-'}, "
             f"mean_in={trim_stats['mean_input']:.1f} → monthly no-cache ${trim_no}, with-cache ${trim_c}. "
             f"hybrid_mem: turns={hm_stats['turns'] if hm_stats else '-'}, "
@@ -503,10 +506,10 @@ Hybrid retrieval: dense + own BM25 + RRF (k=60), then Twist-B time filter."""
     story.append(Paragraph("4. Limitations and one more week", st["h1"]))
     story.append(
         Paragraph(
-            "Template NLG under-counts full prompt tokens vs a real chat API; re-measure on Ollama/API for Task 5. "
-            "Local hash embeddings understate paraphrase dense quality — re-run indexes on Prayogshala MiniLM. "
+            "This report’s tables use the local MiniLM + Qwen run in logs/calls.jsonl. "
+            "Qwen increases mean input tokens vs template NLG; Task-5 costs use measured chat tokens floored at the system prefix. "
             "Complete surprise probes after 24/11; expand LLM-judge rubric with ≥10 human agreement checks. "
-            "With one more week: richer episodic reflections, stronger paraphrase retrieval, and a polished ≤5 min demo video.",
+            "With one more week: harden P-U2/P-E2 replies, relax P-K1 matching, and record the ≤5 min demo video.",
             st["body"],
         )
     )
@@ -531,8 +534,8 @@ Hybrid retrieval: dense + own BM25 + RRF (k=60), then Twist-B time filter."""
             "After measuring hit_rate.csv, dense@1 on code questions was far below BM25 (~0.35 vs ~0.92). "
             "I found the failure by inspecting ranked lists for Q02/Q04-style IDs where hash-dense neighbours "
             "were semantically related but wrong codes. <b>Change:</b> keep own BM25 + RRF with BM25-first "
-            "behaviour for exact codes, add Twist-B validity filtering, and treat MiniLM (not hash) as the "
-            "graded embedding path on Prayogshala.",
+            "behaviour for exact codes, add Twist-B validity filtering, and use MiniLM "
+            "(sentence-transformers/all-MiniLM-L6-v2) for the evidence tables in this report.",
             st["body"],
         )
     )

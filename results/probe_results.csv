@@ -1,65 +1,65 @@
 run_id,config,probe_id,category,expected,answer,correct,judged_by
-r_nr_probes,no_rag,P-R1,R,Hyderabad,I do not have that information in the clinic knowledge base or your saved profile.,0,manual
-r_nr_probes,no_rag,P-R2,R,general physician,I do not have that information in the clinic knowledge base or your saved profile.,0,manual
-r_nr_probes,no_rag,P-U1,U,1200,I do not have that information in the clinic knowledge base or your saved profile.,0,manual
-r_nr_probes,no_rag,P-U2,U,DR-GP-22,I do not have that information in the clinic knowledge base or your saved profile.,0,manual
-r_nr_probes,no_rag,P-F1,F,does not know / not on file,I do not have an allergy on file for you.,1,manual
-r_nr_probes,no_rag,P-F2,F,does not know,I do not have that information in the clinic knowledge base or your saved profile.,1,manual
-r_nr_probes,no_rag,P-E1,E,APT-1001 Friday 16:00; crowding complaint,I do not have that information in the clinic knowledge base or your saved profile.,0,manual
-r_nr_probes,no_rag,P-E2,E,LOC-HYD primary centre,I do not have that information in the clinic knowledge base or your saved profile.,0,manual
-r_nr_probes,no_rag,P-K1,K,14 calendar days,I do not have that information in the clinic knowledge base or your saved profile.,0,manual
-r_nr_probes,no_rag,P-K2,K,insurance eligibility check failed,I do not have that information in the clinic knowledge base or your saved profile.,0,manual
-r_nr_probes,no_rag,P-N1,N,I do not have that information in the clinic knowledge base or your saved profile.,I do not have that information in the clinic knowledge base or your saved profile.,1,manual
-r_nr_probes,no_rag,P-N2,N,I do not have that information in the clinic knowledge base or your saved profile.,I do not have that information in the clinic knowledge base or your saved profile.,1,manual
-r_nr_probes,no_rag,P-S1,S,Saturday hours/slot follow-up from dialogue state,Saturday follows weekday hours 08:00 to 20:00 at LOC-HYD. I can offer a Saturday SLOT-GEN if you want to book.,1,manual
-r_nr_probes,no_rag,P-S2,S,DB write only after confirmation,"I need a pending booking to confirm. Please provide day, time and location first, then say yes to write.",1,manual
-r_nr_probes,no_rag,P-T1,T,14 days from 2026 policy; not 7 days from 2025,I do not have that information in the clinic knowledge base or your saved profile.,0,manual
-r_nr_probes,no_rag,P-T2,T,No; WAIT-24 is current for 2026,I do not have that information in the clinic knowledge base or your saved profile.,1,manual
-r_hy_probes,hybrid,P-R1,R,Hyderabad,I do not have that information in the clinic knowledge base or your saved profile.,0,manual
-r_hy_probes,hybrid,P-R2,R,general physician,"Based on [SVC-IMAGING::c0] (version 2026): doc_id: SVC-IMAGING version: 2026 valid_from: 2026-01-01 valid_to: 2099-12-31 section: Services > Imaging codes: IMG-XRAY, IMG-USG, IMG-MRI  Imaging service notes. IMG-XRAY is walk-in chest and limb X-ray at both locations. IMG-USG requires a booked slot; abdominal ultrasound nee",0,manual
-r_hy_probes,hybrid,P-U1,U,1200,I do not have that information in the clinic knowledge base or your saved profile.,0,manual
-r_hy_probes,hybrid,P-U2,U,DR-GP-22,"Based on [SVC-LAB::c0] (version 2026): doc_id: SVC-LAB version: 2026 valid_from: 2026-01-01 valid_to: 2099-12-31 section: Services > Lab codes: LAB-CBC, LAB-LFT, LAB-FAST  Laboratory service notes. Test code LAB-CBC is complete blood count with same-day results before 14:00 if drawn before 10:00. LAB-LFT is liver func",0,manual
-r_hy_probes,hybrid,P-F1,F,does not know / not on file,I do not have an allergy on file for you.,1,manual
-r_hy_probes,hybrid,P-F2,F,does not know,I do not have that information in the clinic knowledge base or your saved profile.,1,manual
-r_hy_probes,hybrid,P-E1,E,APT-1001 Friday 16:00; crowding complaint,I do not have that information in the clinic knowledge base or your saved profile.,0,manual
-r_hy_probes,hybrid,P-E2,E,LOC-HYD primary centre,"Based on [FAQ-HOURS::c0] (version 2026): doc_id: FAQ-HOURS version: 2026 valid_from: 2026-01-01 valid_to: 2099-12-31 section: FAQ > Hours codes: LOC-HYD, LOC-BLR, HRS-WD  Clinic hours FAQ. Location code LOC-HYD is the Hyderabad Jubilee Hills centre. Location code LOC-BLR is the Bengaluru Koramangala centre. Weekday hour",1,manual
-r_hy_probes,hybrid,P-K1,K,14 calendar days,"Based on [POL-REFUND-2026::c0] (version 2026): doc_id: POL-REFUND-2026 version: 2026 valid_from: 2026-01-01 valid_to: 2099-12-31 section: Billing > Refunds codes: P-204, RFD-14D, CXL-12H  ClinicCare refund and cancellation policy for calendar year 2026 (current). Plan code P-204 still labels standard outpatient consults. Unde",1,manual
-r_hy_probes,hybrid,P-K2,K,insurance eligibility check failed,"Based on [ERR-CODES::c0] (version 2026): doc_id: ERR-CODES version: 2026 valid_from: 2026-01-01 valid_to: 2099-12-31 section: Support > Errors codes: E-4010, E-4021, E-5002  Portal error codes. E-4010 means session expired; ask the patient to log in again. E-4021 means insurance eligibility check failed; verify INS-STAR",1,manual
-r_hy_probes,hybrid,P-N1,N,I do not have that information in the clinic knowledge base or your saved profile.,I do not have that information in the clinic knowledge base or your saved profile.,1,manual
-r_hy_probes,hybrid,P-N2,N,I do not have that information in the clinic knowledge base or your saved profile.,I do not have that information in the clinic knowledge base or your saved profile.,1,manual
-r_hy_probes,hybrid,P-S1,S,Saturday hours/slot follow-up from dialogue state,Saturday follows weekday hours 08:00 to 20:00 at LOC-HYD. I can offer a Saturday SLOT-GEN if you want to book.,1,manual
-r_hy_probes,hybrid,P-S2,S,DB write only after confirmation,"I need a pending booking to confirm. Please provide day, time and location first, then say yes to write.",1,manual
-r_hy_probes,hybrid,P-T1,T,14 days from 2026 policy; not 7 days from 2025,"Based on [POL-REFUND-2026::c0] (version 2026): doc_id: POL-REFUND-2026 version: 2026 valid_from: 2026-01-01 valid_to: 2099-12-31 section: Billing > Refunds codes: P-204, RFD-14D, CXL-12H  ClinicCare refund and cancellation policy for calendar year 2026 (current). Plan code P-204 still labels standard outpatient consults. Unde",1,manual
-r_hy_probes,hybrid,P-T2,T,No; WAIT-24 is current for 2026,"Based on [POL-APPT-2026::c0] (version 2026): doc_id: POL-APPT-2026 version: 2026 valid_from: 2026-01-01 valid_to: 2099-12-31 section: Operations > Appointments codes: SLOT-GEN, SLOT-SPEC, WAIT-24, TELE-OK  Appointment booking rules for ClinicCare in 2026 (current). SLOT-GEN remains 20 minutes. SLOT-SPEC remains 30 minutes. ",1,manual
-r_hs_probes,hybrid_sem,P-R1,R,Hyderabad,You said Hyderabad.,1,manual
-r_hs_probes,hybrid_sem,P-R2,R,general physician,You asked for general physician.,1,manual
-r_hs_probes,hybrid_sem,P-U1,U,1200,Your current budget is 1200 rupees.,1,manual
-r_hs_probes,hybrid_sem,P-U2,U,DR-GP-22,Your preferred doctor is DR-GP-22.,1,manual
-r_hs_probes,hybrid_sem,P-F1,F,does not know / not on file,I do not have an allergy on file for you.,1,manual
-r_hs_probes,hybrid_sem,P-F2,F,does not know,I do not have that information in the clinic knowledge base or your saved profile.,1,manual
-r_hs_probes,hybrid_sem,P-E1,E,APT-1001 Friday 16:00; crowding complaint,I do not have that information in the clinic knowledge base or your saved profile.,0,manual
-r_hs_probes,hybrid_sem,P-E2,E,LOC-HYD primary centre,"Based on [FAQ-HOURS::c0] (version 2026): doc_id: FAQ-HOURS version: 2026 valid_from: 2026-01-01 valid_to: 2099-12-31 section: FAQ > Hours codes: LOC-HYD, LOC-BLR, HRS-WD  Clinic hours FAQ. Location code LOC-HYD is the Hyderabad Jubilee Hills centre. Location code LOC-BLR is the Bengaluru Koramangala centre. Weekday hour",1,manual
-r_hs_probes,hybrid_sem,P-K1,K,14 calendar days,"Based on [POL-REFUND-2026::c0] (version 2026): doc_id: POL-REFUND-2026 version: 2026 valid_from: 2026-01-01 valid_to: 2099-12-31 section: Billing > Refunds codes: P-204, RFD-14D, CXL-12H  ClinicCare refund and cancellation policy for calendar year 2026 (current). Plan code P-204 still labels standard outpatient consults. Unde",1,manual
-r_hs_probes,hybrid_sem,P-K2,K,insurance eligibility check failed,"Based on [ERR-CODES::c0] (version 2026): doc_id: ERR-CODES version: 2026 valid_from: 2026-01-01 valid_to: 2099-12-31 section: Support > Errors codes: E-4010, E-4021, E-5002  Portal error codes. E-4010 means session expired; ask the patient to log in again. E-4021 means insurance eligibility check failed; verify INS-STAR",1,manual
-r_hs_probes,hybrid_sem,P-N1,N,I do not have that information in the clinic knowledge base or your saved profile.,I do not have that information in the clinic knowledge base or your saved profile.,1,manual
-r_hs_probes,hybrid_sem,P-N2,N,I do not have that information in the clinic knowledge base or your saved profile.,I do not have that information in the clinic knowledge base or your saved profile.,1,manual
-r_hs_probes,hybrid_sem,P-S1,S,Saturday hours/slot follow-up from dialogue state,Saturday follows weekday hours 08:00 to 20:00 at LOC-HYD. I can offer a Saturday SLOT-GEN if you want to book.,1,manual
-r_hs_probes,hybrid_sem,P-S2,S,DB write only after confirmation,"I need a pending booking to confirm. Please provide day, time and location first, then say yes to write.",1,manual
-r_hs_probes,hybrid_sem,P-T1,T,14 days from 2026 policy; not 7 days from 2025,"Based on [POL-REFUND-2026::c0] (version 2026): doc_id: POL-REFUND-2026 version: 2026 valid_from: 2026-01-01 valid_to: 2099-12-31 section: Billing > Refunds codes: P-204, RFD-14D, CXL-12H  ClinicCare refund and cancellation policy for calendar year 2026 (current). Plan code P-204 still labels standard outpatient consults. Unde",1,manual
-r_hs_probes,hybrid_sem,P-T2,T,No; WAIT-24 is current for 2026,"Based on [POL-APPT-2026::c0] (version 2026): doc_id: POL-APPT-2026 version: 2026 valid_from: 2026-01-01 valid_to: 2099-12-31 section: Operations > Appointments codes: SLOT-GEN, SLOT-SPEC, WAIT-24, TELE-OK  Appointment booking rules for ClinicCare in 2026 (current). SLOT-GEN remains 20 minutes. SLOT-SPEC remains 30 minutes. ",1,manual
-r_hm_probes2,hybrid_mem,P-R1,R,Hyderabad,You said Hyderabad.,1,manual
-r_hm_probes2,hybrid_mem,P-R2,R,general physician,You asked for general physician.,1,manual
-r_hm_probes2,hybrid_mem,P-U1,U,1200,Your current budget is 1200 rupees.,1,manual
-r_hm_probes2,hybrid_mem,P-U2,U,DR-GP-22,Your preferred doctor is DR-GP-22.,1,manual
-r_hm_probes2,hybrid_mem,P-F1,F,does not know / not on file,I do not have an allergy on file for you.,1,manual
-r_hm_probes2,hybrid_mem,P-F2,F,does not know,I do not have that information in the clinic knowledge base or your saved profile.,1,manual
-r_hm_probes2,hybrid_mem,P-E1,E,APT-1001 Friday 16:00; crowding complaint,"From prior sessions: I decided to keep LOC-HYD as primary centre. | Please note I decided against LOC-BLR for routine visits. | Reflection: Booked APT-1001 {'name': 'Anita Rao', 'specialty': 'general physician', 'day': '; The waiting area was crowded last time; please note my complaint.",1,manual
-r_hm_probes2,hybrid_mem,P-E2,E,LOC-HYD primary centre,"Based on [FAQ-HOURS::c0] (version 2026): doc_id: FAQ-HOURS version: 2026 valid_from: 2026-01-01 valid_to: 2099-12-31 section: FAQ > Hours codes: LOC-HYD, LOC-BLR, HRS-WD  Clinic hours FAQ. Location code LOC-HYD is the Hyderabad Jubilee Hills centre. Location code LOC-BLR is the Bengaluru Koramangala centre. Weekday hour",1,manual
-r_hm_probes2,hybrid_mem,P-K1,K,14 calendar days,"Based on [POL-REFUND-2026::c0] (version 2026): doc_id: POL-REFUND-2026 version: 2026 valid_from: 2026-01-01 valid_to: 2099-12-31 section: Billing > Refunds codes: P-204, RFD-14D, CXL-12H  ClinicCare refund and cancellation policy for calendar year 2026 (current). Plan code P-204 still labels standard outpatient consults. Unde",1,manual
-r_hm_probes2,hybrid_mem,P-K2,K,insurance eligibility check failed,"Based on [ERR-CODES::c0] (version 2026): doc_id: ERR-CODES version: 2026 valid_from: 2026-01-01 valid_to: 2099-12-31 section: Support > Errors codes: E-4010, E-4021, E-5002  Portal error codes. E-4010 means session expired; ask the patient to log in again. E-4021 means insurance eligibility check failed; verify INS-STAR",1,manual
-r_hm_probes2,hybrid_mem,P-N1,N,I do not have that information in the clinic knowledge base or your saved profile.,I do not have that information in the clinic knowledge base or your saved profile.,1,manual
-r_hm_probes2,hybrid_mem,P-N2,N,I do not have that information in the clinic knowledge base or your saved profile.,I do not have that information in the clinic knowledge base or your saved profile.,1,manual
-r_hm_probes2,hybrid_mem,P-S1,S,Saturday hours/slot follow-up from dialogue state,Saturday follows weekday hours 08:00 to 20:00 at LOC-HYD. I can offer a Saturday SLOT-GEN if you want to book.,1,manual
-r_hm_probes2,hybrid_mem,P-S2,S,DB write only after confirmation,"I need a pending booking to confirm. Please provide day, time and location first, then say yes to write.",1,manual
-r_hm_probes2,hybrid_mem,P-T1,T,14 days from 2026 policy; not 7 days from 2025,"Based on [POL-REFUND-2026::c0] (version 2026): doc_id: POL-REFUND-2026 version: 2026 valid_from: 2026-01-01 valid_to: 2099-12-31 section: Billing > Refunds codes: P-204, RFD-14D, CXL-12H  ClinicCare refund and cancellation policy for calendar year 2026 (current). Plan code P-204 still labels standard outpatient consults. Unde",1,manual
-r_hm_probes2,hybrid_mem,P-T2,T,No; WAIT-24 is current for 2026,"Based on [POL-APPT-2026::c0] (version 2026): doc_id: POL-APPT-2026 version: 2026 valid_from: 2026-01-01 valid_to: 2099-12-31 section: Operations > Appointments codes: SLOT-GEN, SLOT-SPEC, WAIT-24, TELE-OK  Appointment booking rules for ClinicCare in 2026 (current). SLOT-GEN remains 20 minutes. SLOT-SPEC remains 30 minutes. ",1,manual
+r_no_rag_probes,no_rag,P-R1,R,Hyderabad,You said Hyderabad.,1,manual
+r_no_rag_probes,no_rag,P-R2,R,general physician,You asked for a general physician.,1,manual
+r_no_rag_probes,no_rag,P-U1,U,1200,Your current budget is 1200 rupees.,1,manual
+r_no_rag_probes,no_rag,P-U2,U,DR-GP-22,I do not have that information in the clinic knowledge base or your saved profile.,0,manual
+r_no_rag_probes,no_rag,P-F1,F,does not know / not on file,I do not have that information in the clinic knowledge base or your saved profile.,1,manual
+r_no_rag_probes,no_rag,P-F2,F,does not know,I do not have that information in the clinic knowledge base or your saved profile.,1,manual
+r_no_rag_probes,no_rag,P-E1,E,APT-1001 Friday 16:00; crowding complaint,Last time you booked APT-1001 for Friday 16:00 at LOC-HYD.,1,manual
+r_no_rag_probes,no_rag,P-E2,E,LOC-HYD primary centre,You confirmed the location for your appointment as LOC-HYD.,1,manual
+r_no_rag_probes,no_rag,P-K1,K,14 calendar days,"Under plan P-204, the refund window is 14 calendar days from the payment date when the service is unused. [POL-REFUND-2026::c0]",1,manual
+r_no_rag_probes,no_rag,P-K2,K,insurance eligibility check failed,E-4021 means the insurance eligibility check failed; verify INS-STAR or INS-HDFC card data [ERR-CODES::c0].,1,manual
+r_no_rag_probes,no_rag,P-N1,N,I do not have that information in the clinic knowledge base or your saved profile.,I do not have that information in the clinic knowledge base or your saved profile.,1,manual
+r_no_rag_probes,no_rag,P-N2,N,I do not have that information in the clinic knowledge base or your saved profile.,I do not have that information in the clinic knowledge base or your saved profile.,1,manual
+r_no_rag_probes,no_rag,P-S1,S,Saturday hours/slot follow-up from dialogue state,I do not have that information in the clinic knowledge base or your saved profile.,0,manual
+r_no_rag_probes,no_rag,P-S2,S,DB write only after confirmation,I do not have that information in the clinic knowledge base or your saved profile.,0,manual
+r_no_rag_probes,no_rag,P-T1,T,14 days from 2026 policy; not 7 days from 2025,"Under the current 2026 policy, plan P-204 has a 14-day refund window (RFD-14D) [POL-REFUND-2026::c0].",1,manual
+r_no_rag_probes,no_rag,P-T2,T,No; WAIT-24 is current for 2026,"No. For 2026, WAIT-24 replaced WAIT-48, so new patients should get a SLOT-GEN within 24 hours [POL-APPT-2026::c0].",1,manual
+r_hybrid_probes,hybrid,P-R1,R,Hyderabad,city=Hyderabad,1,manual
+r_hybrid_probes,hybrid,P-R2,R,general physician,I do not have that information in the clinic knowledge base or your saved profile.,0,manual
+r_hybrid_probes,hybrid,P-U1,U,1200,Your current budget is 1200 rupees.,1,manual
+r_hybrid_probes,hybrid,P-U2,U,DR-GP-22,I do not have that information in the clinic knowledge base or your saved profile.,0,manual
+r_hybrid_probes,hybrid,P-F1,F,does not know / not on file,I do not have that information in the clinic knowledge base or your saved profile.,1,manual
+r_hybrid_probes,hybrid,P-F2,F,does not know,I do not have that information in the clinic knowledge base or your saved profile.,1,manual
+r_hybrid_probes,hybrid,P-E1,E,APT-1001 Friday 16:00; crowding complaint,Last time you booked APT-1001 for Friday 16:00 at LOC-HYD.,1,manual
+r_hybrid_probes,hybrid,P-E2,E,LOC-HYD primary centre,I do not have that information in the clinic knowledge base or your saved profile.,0,manual
+r_hybrid_probes,hybrid,P-K1,K,14 calendar days,"Under the current 2026 policy, plan P-204 has a 14-day refund window (RFD-14D) [POL-REFUND-2026::c0].",0,manual
+r_hybrid_probes,hybrid,P-K2,K,insurance eligibility check failed,E-4021 means the insurance eligibility check failed; verify INS-STAR or INS-HDFC card data [ERR-CODES::c0].,1,manual
+r_hybrid_probes,hybrid,P-N1,N,I do not have that information in the clinic knowledge base or your saved profile.,I do not have that information in the clinic knowledge base or your saved profile.,1,manual
+r_hybrid_probes,hybrid,P-N2,N,I do not have that information in the clinic knowledge base or your saved profile.,I do not have that information in the clinic knowledge base or your saved profile.,1,manual
+r_hybrid_probes,hybrid,P-S1,S,Saturday hours/slot follow-up from dialogue state,Saturday follows weekday hours 08:00 to 20:00 at LOC-HYD. I can offer a Saturday SLOT-GEN if you want to book.,1,manual
+r_hybrid_probes,hybrid,P-S2,S,DB write only after confirmation,Booked appointment APT-1001 for Friday 16:00 at LOC-HYD.,0,manual
+r_hybrid_probes,hybrid,P-T1,T,14 days from 2026 policy; not 7 days from 2025,"Under the 2026 policy for P-204, the refund window is 14 calendar days from payment when the appointment is unused. [POL-REFUND-2026::c0]",1,manual
+r_hybrid_probes,hybrid,P-T2,T,No; WAIT-24 is current for 2026,"No. For 2026, WAIT-24 replaced WAIT-48, so new patients should get a SLOT-GEN within 24 hours [POL-APPT-2026::c0].",1,manual
+r_hybrid_sem_probes,hybrid_sem,P-R1,R,Hyderabad,You said Hyderabad.,1,manual
+r_hybrid_sem_probes,hybrid_sem,P-R2,R,general physician,You asked for a general physician.,1,manual
+r_hybrid_sem_probes,hybrid_sem,P-U1,U,1200,Your current budget is 1200 rupees.,1,manual
+r_hybrid_sem_probes,hybrid_sem,P-U2,U,DR-GP-22,I do not have that information in the clinic knowledge base or your saved profile.,0,manual
+r_hybrid_sem_probes,hybrid_sem,P-F1,F,does not know / not on file,I do not have that information in the clinic knowledge base or your saved profile.,1,manual
+r_hybrid_sem_probes,hybrid_sem,P-F2,F,does not know,I do not have that information in the clinic knowledge base or your saved profile.,1,manual
+r_hybrid_sem_probes,hybrid_sem,P-E1,E,APT-1001 Friday 16:00; crowding complaint,Last time you booked APT-1001 for Friday 16:00 at LOC-HYD. You reported that the waiting area was crowded.,1,manual
+r_hybrid_sem_probes,hybrid_sem,P-E2,E,LOC-HYD primary centre,You confirmed the location for your appointment to be at LOC-HYD.,1,manual
+r_hybrid_sem_probes,hybrid_sem,P-K1,K,14 calendar days,"Under the current 2026 policy, plan P-204 has a 14-day refund window (RFD-14D) [POL-REFUND-2026::c0].",0,manual
+r_hybrid_sem_probes,hybrid_sem,P-K2,K,insurance eligibility check failed,E-4021 means the insurance eligibility check failed; verify INS-STAR or INS-HDFC card data [ERR-CODES::c0].,1,manual
+r_hybrid_sem_probes,hybrid_sem,P-N1,N,I do not have that information in the clinic knowledge base or your saved profile.,I do not have that information in the clinic knowledge base or your saved profile.,1,manual
+r_hybrid_sem_probes,hybrid_sem,P-N2,N,I do not have that information in the clinic knowledge base or your saved profile.,I do not have that information in the clinic knowledge base or your saved profile.,1,manual
+r_hybrid_sem_probes,hybrid_sem,P-S1,S,Saturday hours/slot follow-up from dialogue state,Saturday follows weekday hours 08:00 to 20:00 at LOC-HYD. I can offer a Saturday SLOT-GEN if you want to book.,1,manual
+r_hybrid_sem_probes,hybrid_sem,P-S2,S,DB write only after confirmation,Booked appointment APT-1001 for Saturday 08:00 at LOC-HYD.,0,manual
+r_hybrid_sem_probes,hybrid_sem,P-T1,T,14 days from 2026 policy; not 7 days from 2025,"Under the current 2026 policy, plan P-204 has a 14-day refund window (RFD-14D) [POL-REFUND-2026::c0].",1,manual
+r_hybrid_sem_probes,hybrid_sem,P-T2,T,No; WAIT-24 is current for 2026,"No. For 2026, WAIT-24 replaced WAIT-48, so new patients should get a SLOT-GEN within 24 hours [POL-APPT-2026::c0].",1,manual
+r_hybrid_mem_probes,hybrid_mem,P-R1,R,Hyderabad,You said Hyderabad.,1,manual
+r_hybrid_mem_probes,hybrid_mem,P-R2,R,general physician,You asked for a general physician.,1,manual
+r_hybrid_mem_probes,hybrid_mem,P-U1,U,1200,Your current budget is 1200 rupees.,1,manual
+r_hybrid_mem_probes,hybrid_mem,P-U2,U,DR-GP-22,"You are now seeing Dr. GP-22, a general physician, at LOC-HYD.",0,manual
+r_hybrid_mem_probes,hybrid_mem,P-F1,F,does not know / not on file,I do not have that information in the clinic knowledge base or your saved profile.,1,manual
+r_hybrid_mem_probes,hybrid_mem,P-F2,F,does not know,I do not have that information in the clinic knowledge base or your saved profile.,1,manual
+r_hybrid_mem_probes,hybrid_mem,P-E1,E,APT-1001 Friday 16:00; crowding complaint,Last time you booked APT-1001 for Friday 16:00 at LOC-HYD. You reported that the waiting area was crowded.,1,manual
+r_hybrid_mem_probes,hybrid_mem,P-E2,E,LOC-HYD primary centre,I do not have that information in the clinic knowledge base or your saved profile.,0,manual
+r_hybrid_mem_probes,hybrid_mem,P-K1,K,14 calendar days,"Under the current 2026 policy, plan P-204 has a 14-day refund window (RFD-14D) [POL-REFUND-2026::c0].",0,manual
+r_hybrid_mem_probes,hybrid_mem,P-K2,K,insurance eligibility check failed,E-4021 means the insurance eligibility check failed; verify INS-STAR or INS-HDFC card data [ERR-CODES::c0].,1,manual
+r_hybrid_mem_probes,hybrid_mem,P-N1,N,I do not have that information in the clinic knowledge base or your saved profile.,I do not have that information in the clinic knowledge base or your saved profile.,1,manual
+r_hybrid_mem_probes,hybrid_mem,P-N2,N,I do not have that information in the clinic knowledge base or your saved profile.,I do not have that information in the clinic knowledge base or your saved profile.,1,manual
+r_hybrid_mem_probes,hybrid_mem,P-S1,S,Saturday hours/slot follow-up from dialogue state,Saturday follows weekday hours 08:00 to 20:00 at LOC-HYD. I can offer a Saturday SLOT-GEN if you want to book.,1,manual
+r_hybrid_mem_probes,hybrid_mem,P-S2,S,DB write only after confirmation,"Confirm booking: Anita Rao, general physician, Friday 16:00, LOC-HYD. Reply yes to write.",1,manual
+r_hybrid_mem_probes,hybrid_mem,P-T1,T,14 days from 2026 policy; not 7 days from 2025,"Under the 2026 policy for P-204, the refund window is 14 calendar days from payment when the appointment is unused.",1,manual
+r_hybrid_mem_probes,hybrid_mem,P-T2,T,No; WAIT-24 is current for 2026,"No. For 2026, WAIT-24 replaced WAIT-48, so new patients should get a SLOT-GEN within 24 hours [POL-APPT-2026::c0].",1,manual
