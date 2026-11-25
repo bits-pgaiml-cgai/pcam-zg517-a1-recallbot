@@ -11,6 +11,7 @@ INTENTS = [
     "provide_fact",
     "update_fact",
     "forget_fact",
+    "recall_profile",
     "kb_question",
     "book_start",
     "provide_slot",
@@ -52,6 +53,10 @@ def _entities(text: str) -> Dict[str, str]:
     m = re.search(r"my name is ([A-Za-z ]+)", text, re.I)
     if m:
         ents["name"] = m.group(1).strip()
+    if "name" not in ents:
+        m = re.search(r"\bfor ([A-Z][a-z]+(?:\s+[A-Z][a-z]+)+)\b", text)
+        if m:
+            ents["name"] = m.group(1).strip()
     return ents
 
 
@@ -61,6 +66,10 @@ def classify_intent(text: str) -> str:
         return "greet"
     if "forget" in t or "remove my" in t or "delete my" in t:
         return "forget_fact"
+    if "remember about me" in t or "list everything you currently remember" in t or (
+        "list everything" in t and "remember" in t
+    ):
+        return "recall_profile"
     if re.search(r"\b(actually|change|update|instead)\b", t) and (
         "budget" in t or "doctor" in t or "prefer" in t or "sms" in t
     ):

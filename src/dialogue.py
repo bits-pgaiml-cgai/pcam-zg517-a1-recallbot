@@ -56,8 +56,20 @@ class DialogueManager:
             if intent == "forget_fact" and "allergy" in text.lower():
                 self.episodic.redact_mentioning(self.user_id, "allergy")
 
+        low = text.lower()
+        invented_memory_probe = (
+            "last time you told me" in low
+            or "blood type" in low
+            or ("you told me" in low and "right?" in low)
+        )
+
         kb_chunks: List[Dict] = []
-        if self.enable_rag and intent in {"kb_question", "state_followup", "unknown"}:
+        if (
+            self.enable_rag
+            and intent in {"kb_question", "state_followup", "unknown"}
+            and not invented_memory_probe
+            and intent != "recall_profile"
+        ):
             kb_chunks = search_kb(
                 text,
                 self.index,
@@ -75,29 +87,34 @@ class DialogueManager:
 
         semantic_facts = []
         if self.enable_semantic:
-            semantic_facts = self.semantic.retrieve(self.user_id, text, as_of=self.as_of)
-            # Prefer exact profile keys for "what is my ..." recall probes.
             active = self.semantic.active_facts(self.user_id, as_of=self.as_of)
-            key_map = {
-                "city": "city",
-                "budget": "budget",
-                "allergy": "allergy",
-                "doctor": "preferred_doctor",
-                "specialty": "specialty",
-                "sms": "sms_language",
-                "language": "sms_language",
-            }
-            low = text.lower()
-            for tip, key in key_map.items():
-                if tip in low:
-                    matched = [f for f in active if f["key"] == key]
-                    if matched:
-                        semantic_facts = matched + [f for f in semantic_facts if f["key"] != key]
+            if intent == "recall_profile":
+                semantic_facts = list(active)
+            else:
+                semantic_facts = self.semantic.retrieve(self.user_id, text, as_of=self.as_of)
+                key_map = {
+                    "city": "city",
+                    "budget": "budget",
+                    "allergy": "allergy",
+                    "doctor": "preferred_doctor",
+                    "specialty": "specialty",
+                    "sms": "sms_language",
+                    "language": "sms_language",
+                }
+                for tip, key in key_map.items():
+                    if tip in low:
+                        matched = [f for f in active if f["key"] == key]
+                        if matched:
+                            semantic_facts = matched + [f for f in semantic_facts if f["key"] != key]
 
         episodes = (
-            self.episodic.retrieve(self.user_id, text)
-            if self.enable_episodic
-            else []
+            self.episodic.retrieve(self.user_id, text, top_k=5)
+            if self.enable_episodic and intent == "recall_profile"
+            else (
+                self.episodic.retrieve(self.user_id, text)
+                if self.enable_episodic
+                else []
+            )
         )
 
         just_booked = False

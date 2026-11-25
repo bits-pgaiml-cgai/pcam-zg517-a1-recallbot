@@ -45,8 +45,8 @@ def merge_rows(path: Path, new_rows: list) -> list:
     if path.exists():
         with open(path, encoding="utf-8") as f:
             existing = list(csv.DictReader(f))
-    configs = {r["config"] for r in new_rows}
-    kept = [r for r in existing if r.get("config") not in configs]
+    keys = {(r.get("config"), r.get("probe_id")) for r in new_rows}
+    kept = [r for r in existing if (r.get("config"), r.get("probe_id")) not in keys]
     return kept + new_rows
 
 
@@ -59,10 +59,30 @@ def main():
     args = parser.parse_args()
     set_run_id(args.run_id)
 
-    probes = json.loads((DATA_DIR / args.probes).read_text(encoding="utf-8"))
-    probes = [p for p in probes if p.get("question") and p["question"] != "PLACEHOLDER"]
+    raw = json.loads((DATA_DIR / args.probes).read_text(encoding="utf-8"))
+    probes = []
+    for p in raw:
+        q = p.get("question") or p.get("text") or ""
+        if not q or q == "PLACEHOLDER" or q.startswith("<"):
+            continue
+        probes.append(
+            {
+                **p,
+                "probe_id": p.get("probe_id") or p.get("id"),
+                "question": q,
+                "expected": p.get("expected") or p.get("pass_if") or "",
+                "category": p.get("category") or ("SP" if str(p.get("id", "")).startswith("S") else "S"),
+                "session": p.get("session") or "B",
+            }
+        )
     if not probes:
         print(f"No runnable probes in {args.probes}")
+        return
+    if Path(args.probes).name == "surprise_probes.json":
+        print(
+            "Surprise probes need Session C with an S2 process restart. "
+            "Use: python -m src.run_surprise --phase all"
+        )
         return
 
     index = load_index(args.chunk_size)

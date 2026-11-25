@@ -100,6 +100,21 @@ def _template_reply(
     if intent == "greet":
         return "Hello! I am RecallBot for ClinicCare appointments. How can I help?"
 
+    if intent == "recall_profile":
+        fact_bits = [f"{f['key']}={f['value']}" for f in semantic_facts if f.get("status", "active") == "active"]
+        ep_bits = [e.get("text", "")[:120] for e in episodes[:3]]
+        parts = []
+        if fact_bits:
+            parts.append("Current profile: " + "; ".join(fact_bits))
+        if ep_bits:
+            parts.append("Recent episodes: " + " | ".join(ep_bits))
+        if parts:
+            return " ".join(parts)
+        return FALLBACK_SENTENCE
+
+    if "last time you told me" in t or "blood type" in t:
+        return FALLBACK_SENTENCE
+
     if intent == "forget_fact":
         return "I removed the requested fact from your profile and related episode mentions."
 

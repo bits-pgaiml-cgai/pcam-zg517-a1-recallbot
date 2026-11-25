@@ -461,10 +461,19 @@ Hybrid retrieval: dense + own BM25 + RRF (k=60), then Twist-B time filter."""
     )
     story.append(
         Paragraph(
-            "<b>4(c) Surprise probes</b>: LMS release 24/11/2026. "
-            "<font face='Courier'>data/surprise_probes.json</font> currently holds placeholders. "
-            "Will adapt, run <font face='Courier'>python -m src.eval_probes --probes surprise_probes.json "
-            "--config hybrid_mem --run-id r_surprise</font>, and report raw before/after if the system changes.",
+            "<b>4(c) Surprise probes</b> (LMS 24/11/2026; Session C on hybrid_mem; "
+            "<font face='Courier'>python -m src.run_surprise</font>). "
+            "Adapted clinic wording in <font face='Courier'>data/surprise_probes.json</font>. "
+            "<b>Before</b> (r_surprise, no post-probe fixes): S1 fail (NLU/prompt — listed KB FAQ instead of profile), "
+            "S2 fail (state — name not parsed from “for Anita Rao …”, asked for missing slot), "
+            "S3 pass (POL-REFUND-2026 / 14 days), S4 pass (bare P-204?), "
+            "S5 fail (retrieval — LAB chunk cited instead of fallback). Acc=0.40. "
+            "<b>After</b> (r_surprise_after): S1–S5 all pass (acc=1.00). Fixes: "
+            "recall_profile intent + active-fact listing (NLU/NLG); name entity “for First Last” (state); "
+            "skip KB + exact fallback for “last time you told me / blood type” (retrieval/prompt). "
+            "Evidence: <font face='Courier'>results/surprise_summary_before.json</font>, "
+            "<font face='Courier'>surprise_summary_after.json</font>, "
+            "<font face='Courier'>surprise_probe_results.csv</font>.",
             st["body"],
         )
     )
@@ -508,8 +517,9 @@ Hybrid retrieval: dense + own BM25 + RRF (k=60), then Twist-B time filter."""
         Paragraph(
             "This report’s tables use the local MiniLM + Qwen run in logs/calls.jsonl. "
             "Qwen increases mean input tokens vs template NLG; Task-5 costs use measured chat tokens floored at the system prefix. "
-            "Complete surprise probes after 24/11; expand LLM-judge rubric with ≥10 human agreement checks. "
-            "With one more week: harden P-U2/P-E2 replies, relax P-K1 matching, and record the ≤5 min demo video.",
+            "Surprise probes are complete with before/after evidence. "
+            "Remaining for LMS: ≤5 min demo video + video_link.txt, then zip packaging. "
+            "Optional: expand LLM-judge agreement checks on Session B replies.",
             st["body"],
         )
     )

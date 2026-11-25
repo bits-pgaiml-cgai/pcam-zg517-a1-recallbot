@@ -89,8 +89,10 @@ python -m src.eval_ablation
 # Task 5
 python -m src.cost_scale
 
-# Surprise probes (after 24/11/2026 LMS release)
-python -m src.eval_probes --config hybrid_mem --probes surprise_probes.json --run-id r_surprise
+# Surprise probes / Session C (LMS 24/11/2026) — requires prior hybrid_mem A then B
+python -m src.run_session --session A --config hybrid_mem --run-id r_hm_A
+python -m src.run_session --session B --config hybrid_mem --run-id r_hm_B
+python -m src.run_surprise --phase all --run-id r_surprise
 ```
 
 ## Notebook
